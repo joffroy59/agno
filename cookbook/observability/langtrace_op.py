@@ -9,7 +9,7 @@ This example shows how to instrument your agno agent with Langtrace.
 
 # Must precede other imports
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 from langtrace_python_sdk import langtrace  # type: ignore
 from langtrace_python_sdk.utils.with_root_span import (
@@ -20,7 +20,7 @@ langtrace.init()
 
 agent = Agent(
     name="Stock Price Agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[YFinanceTools()],
     instructions="You are a stock price agent. Answer questions in the style of a stock analyst.",
     debug_mode=True,

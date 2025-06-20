@@ -7,7 +7,7 @@ when using ReasoningTools. It tests both streaming and non-streaming modes.
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.reasoning import ReasoningTools
 
 """Test function to verify reasoning_content is populated in RunResponse."""
@@ -15,7 +15,7 @@ print("\n=== Testing reasoning_content generation ===\n")
 
 # Create an agent with ReasoningTools
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ReasoningTools(add_instructions=True)],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
@@ -45,7 +45,7 @@ print("\nRunning with stream=True...")
 
 # Create a fresh agent for streaming test
 streaming_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ReasoningTools(add_instructions=True)],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠

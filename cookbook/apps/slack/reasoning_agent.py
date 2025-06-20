@@ -6,7 +6,7 @@ from agno.tools.yfinance import YFinanceTools
 
 reasoning_finance_agent = Agent(
     name="Reasoning Finance Agent",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ThinkingTools(add_instructions=True),
         YFinanceTools(

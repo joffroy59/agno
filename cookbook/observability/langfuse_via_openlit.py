@@ -11,7 +11,7 @@ import base64
 import os
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 LANGFUSE_AUTH = base64.b64encode(
@@ -47,7 +47,7 @@ import openlit
 openlit.init(tracer=tracer, disable_batch=True)
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     markdown=True,
     debug_mode=True,

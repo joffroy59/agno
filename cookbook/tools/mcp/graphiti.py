@@ -11,7 +11,7 @@ import asyncio
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mcp import MCPTools
 
 mcp_server_url = "http://localhost:8000/sse"

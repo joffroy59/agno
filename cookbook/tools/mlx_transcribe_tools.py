@@ -20,7 +20,7 @@ Example Usage:
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mlx_transcribe import MLXTranscribeTools
 
 # Get audio files from storage/audio directory
@@ -31,7 +31,7 @@ if not audio_storage_dir.exists():
 
 agent = Agent(
     name="Transcription Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[MLXTranscribeTools(base_dir=audio_storage_dir)],
     instructions=[
         "To transcribe an audio file, use the `transcribe` tool with the name of the audio file as the argument.",

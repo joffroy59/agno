@@ -1,6 +1,6 @@
 from agno.agent import Agent
 from agno.memory.v2 import Memory, SessionSummarizer
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from rich.pretty import pprint
 
 # You can also override the entire `system_message` for the session summarizer if you wanted
@@ -16,7 +16,7 @@ memory = Memory(
 )
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     memory=memory,
     # Set add_history_to_messages=true to add the previous chat history to the messages sent to the Model.
     add_history_to_messages=True,

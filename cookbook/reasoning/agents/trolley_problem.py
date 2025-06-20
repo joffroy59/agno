@@ -1,8 +1,8 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning=True,
     markdown=True,
 )

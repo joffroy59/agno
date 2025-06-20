@@ -11,7 +11,7 @@ import asyncio
 import os
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 from phoenix.otel import register
 
@@ -25,7 +25,7 @@ tracer_provider = register(
 
 agent = Agent(
     name="Stock Price Agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[YFinanceTools()],
     instructions="You are a stock price agent. Answer questions in the style of a stock analyst.",
     debug_mode=True,

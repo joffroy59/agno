@@ -11,7 +11,7 @@ You can access these variables in your functions using the `agent.session_state`
 import json
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.utils.log import log_info
 
 # In-memory database to store user shopping lists

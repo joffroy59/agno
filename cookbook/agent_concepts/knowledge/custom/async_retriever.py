@@ -2,7 +2,7 @@ import asyncio
 from typing import Optional
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.vectordb.qdrant import Qdrant
 from qdrant_client import AsyncQdrantClient
@@ -10,7 +10,7 @@ from qdrant_client import AsyncQdrantClient
 # ---------------------------------------------------------
 # This section loads the knowledge base. Skip if your knowledge base was populated elsewhere.
 # Define the embedder
-embedder = OpenAIEmbedder(id="text-embedding-3-small")
+embedder = OllamaEmbedder(id="nomic-embed-text:latest")
 # Initialize vector database connection
 vector_db = Qdrant(
     collection="thai-recipes", url="http://localhost:6333", embedder=embedder

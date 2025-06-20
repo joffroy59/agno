@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 task = (
     "Read the following abstract of a scientific paper and provide a critical evaluation of its methodology,"
@@ -11,7 +11,7 @@ task = (
 )
 
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning=True,
     markdown=True,
 )

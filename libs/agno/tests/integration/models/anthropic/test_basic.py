@@ -4,7 +4,7 @@ import pytest
 from pydantic import BaseModel, Field
 
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.utils.log import log_warning
 from agno.utils.media import download_file

@@ -49,7 +49,7 @@ import json
 from typing import Iterator, Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.workflow import WorkflowCompletedEvent
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.googlesearch import GoogleSearchTools
@@ -80,7 +80,7 @@ class MarketResearch(BaseModel):
 
 class StartupIdeaValidator(Workflow):
     idea_clarifier_agent: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "Given a user's startup idea, its your goal to refine that idea. ",
             "Evaluates the originality of the idea by comparing it with existing concepts. ",
@@ -93,7 +93,7 @@ class StartupIdeaValidator(Workflow):
     )
 
     market_research_agent: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         tools=[GoogleSearchTools()],
         instructions=[
             "You are provided with a startup idea and the company's mission and objectives. ",
@@ -107,7 +107,7 @@ class StartupIdeaValidator(Workflow):
     )
 
     competitor_analysis_agent: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         tools=[GoogleSearchTools()],
         instructions=[
             "You are provided with a startup idea and some market research related to the idea. ",
@@ -122,7 +122,7 @@ class StartupIdeaValidator(Workflow):
     )
 
     report_agent: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "You are provided with a startup idea and other data about the idea. ",
             "Summarise everything into a single report.",

@@ -1,5 +1,5 @@
 from agno.agent.agent import Agent
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team import Team
 
 
@@ -45,7 +45,7 @@ shopping_list_agent = Agent(
     name="Shopping List Agent",
     role="Manage the shopping list",
     agent_id="shopping_list_manager",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[add_item, remove_item, remove_all_items],
     instructions=[
         "Manage the shopping list by adding and removing items",
@@ -60,7 +60,7 @@ shopping_mgmt_team = Team(
     name="Shopping Management Team",
     team_id="shopping_management",
     mode="coordinate",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     show_tool_calls=True,
     members=[shopping_list_agent],
     instructions=[
@@ -89,7 +89,7 @@ recipe_agent = Agent(
     name="Recipe Suggester",
     agent_id="recipe_suggester",
     role="Suggest recipes based on available ingredients",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[get_ingredients],
     instructions=[
         "First, use the get_ingredients tool to get the current ingredients from the shopping list",
@@ -120,7 +120,7 @@ meal_planning_team = Team(
     name="Meal Planning Team",
     team_id="meal_planning",
     mode="coordinate",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     members=[recipe_agent],
     instructions=[
         "You are a meal planning team that suggests recipes based on shopping list items.",
@@ -167,7 +167,7 @@ def add_chore(team: Team, chore: str, priority: str = "medium") -> str:
 shopping_team = Team(
     name="Shopping List Team",
     mode="coordinate",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     team_session_state={"shopping_list": []},
     tools=[list_items, add_chore],
     session_state={"chores": []},

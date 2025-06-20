@@ -19,7 +19,7 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -28,11 +28,11 @@ from agno.tools.yfinance import YFinanceTools
 finance_agent_with_memory = Agent(
     name="Finance Agent with Memory",
     agent_id="financial_agent_with_memory",
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[YFinanceTools(enable_all=True), DuckDuckGoTools()],
     memory=Memory(
         db=SqliteMemoryDb(table_name="agent_memory", db_file="tmp/agent_data.db"),
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         clear_memories=True,
         delete_memories=True,
     ),

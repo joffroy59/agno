@@ -17,13 +17,13 @@ Run: `pip install openai exa_py agno` to install the dependencies
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.exa import ExaTools
 
 movie_recommendation_agent = Agent(
     name="PopcornPal",
     tools=[ExaTools()],
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description=dedent("""\
         You are PopcornPal, a passionate and knowledgeable film curator with expertise in cinema worldwide! 🎥
 

@@ -3,11 +3,11 @@ pip install requests
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.desi_vocal import DesiVocalTools
 
 audio_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DesiVocalTools()],
     description="You are an AI agent that can generate audio using the DesiVocal API.",
     instructions=[

@@ -2,7 +2,7 @@ from typing import List
 
 from agno.agent import Agent
 from agno.media import Image
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from pydantic import BaseModel, Field
 from rich.pretty import pprint
 
@@ -18,7 +18,7 @@ class MovieScript(BaseModel):
     )
 
 
-agent = Agent(model=OpenAIChat(id="gpt-4o"), response_model=MovieScript)
+agent = Agent(model=Ollama(id="mistral:latest"), response_model=MovieScript)
 
 response = agent.run(
     "Write a movie about this image",

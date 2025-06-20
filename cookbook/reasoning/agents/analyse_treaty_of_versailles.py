@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 task = (
     "Analyze the key factors that led to the signing of the Treaty of Versailles in 1919. "
@@ -9,7 +9,7 @@ task = (
 )
 
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning=True,
     markdown=True,
 )

@@ -3,7 +3,7 @@ from typing import Optional
 from agno.agent import Agent
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 
@@ -13,7 +13,7 @@ db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 # ************* Memory *************
 memory = Memory(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     db=PostgresMemoryDb(table_name="user_memories", db_url=db_url),
     delete_memories=True,
     clear_memories=True,
@@ -37,7 +37,7 @@ def get_memory_agent(
         agent_id="memory-agent",
         session_id=session_id,
         user_id=user_id,
-        model=OpenAIChat(id="gpt-4.1"),
+        model=Ollama(id="mistral:latest"),
         memory=memory,
         enable_agentic_memory=True,
         storage=memory_agent_storage,

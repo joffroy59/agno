@@ -4,7 +4,7 @@ from agno.agent import Agent
 from agno.eval.performance import PerformanceEval
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Memory creation requires a db to be provided
 memory_db = SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db")

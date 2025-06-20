@@ -33,7 +33,7 @@ with the E2B sandbox through natural language commands.
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.e2b import E2BTools
 
 e2b_tools = E2BTools(
@@ -43,7 +43,7 @@ e2b_tools = E2BTools(
 agent = Agent(
     name="Code Execution Sandbox",
     agent_id="e2b-sandbox",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[e2b_tools],
     markdown=True,
     show_tool_calls=True,

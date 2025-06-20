@@ -1,11 +1,11 @@
 from agno.agent import Agent
 from agno.models.deepseek import DeepSeek
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 task = "Give me steps to write a python script for fibonacci series"
 
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning_model=DeepSeek(id="deepseek-reasoner"),
     markdown=True,
 )

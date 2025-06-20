@@ -8,10 +8,10 @@ With this integration, you can write your Agno Agents and Teams, and get a ChatG
 ```python my_agent.py
 from agno.agent.agent import Agent
 from agno.app.agui.app import AGUIApp
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Setup the Agno Agent
-chat_agent = Agent(model=OpenAIChat(id="gpt-4o"))
+chat_agent = Agent(model=Ollama(id="mistral:latest"))
 
 # Setup the AG-UI App
 agui_app = AGUIApp(agent=chat_agent)

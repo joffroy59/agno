@@ -55,7 +55,7 @@ from textwrap import dedent
 from typing import Dict, Iterator, List, Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.exa import ExaTools
 from agno.utils.log import logger
@@ -209,7 +209,7 @@ class PersonalisedEmailGenerator(Workflow):
     """)
 
     scraper: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         tools=[ExaTools()],
         description=dedent("""\
             You are an expert SaaS business analyst specializing in:
@@ -276,7 +276,7 @@ class PersonalisedEmailGenerator(Workflow):
     )
 
     email_creator: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=dedent("""\
             You are writing for a friendly, empathetic 20-year-old sales rep whose
             style is cool, concise, and respectful. Tone is casual yet professional.

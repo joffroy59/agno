@@ -4,9 +4,9 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.dalle import DalleTools
 from agno.tools.eleven_labs import ElevenLabsTools
@@ -25,7 +25,7 @@ agent_knowledge = UrlKnowledge(
         uri=str(tmp_dir.joinpath("lancedb")),
         table_name="agno_assist_knowledge",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 
@@ -41,7 +41,7 @@ agent_knowledge.load(recreate=False)
 agno_support = Agent(
     name="Agno_Assist",
     agent_id="agno_assist",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description=_description,
     instructions=_instructions,
     knowledge=agent_knowledge,

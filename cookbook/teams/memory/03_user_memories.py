@@ -10,7 +10,7 @@ from agno.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.models.perplexity.perplexity import Perplexity
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.team.team import Team
@@ -28,7 +28,7 @@ memory.clear()
 
 stock_searcher = Agent(
     name="Stock Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a stock.",
     tools=[YFinanceTools(cache_results=True)],
     storage=SqliteAgentStorage(
@@ -50,7 +50,7 @@ web_searcher = Agent(
 team = Team(
     name="Stock Team",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     # Store team sessions in a database
     storage=SqliteAgentStorage(
         table_name="team_sessions", db_file="tmp/persistent_memory.db"

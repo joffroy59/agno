@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.exa import ExaTools
 from agno.tools.firecrawl import FirecrawlTools
 
@@ -18,7 +18,7 @@ def calculate_start_date(days: int) -> str:
 
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ExaTools(start_published_date=calculate_start_date(30), type="keyword"),
         FirecrawlTools(scrape=True),

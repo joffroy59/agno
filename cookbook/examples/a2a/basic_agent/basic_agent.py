@@ -5,11 +5,11 @@ from a2a.server.events import EventQueue
 from a2a.types import Part, TextPart
 from a2a.utils import new_agent_text_message
 from agno.agent import Agent, Message, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from typing_extensions import override
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
 )
 
 

@@ -13,7 +13,7 @@ from textwrap import dedent
 
 import nest_asyncio
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.tools.mcp import MCPTools
@@ -48,7 +48,7 @@ async def run_server() -> None:
                 - Use headings to organize your responses
                 - Be concise and focus on relevant information\
             """),
-            model=OpenAIChat(id="gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             storage=SqliteAgentStorage(
                 table_name="basic_agent",
                 db_file=agent_storage_file,

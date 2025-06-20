@@ -1,7 +1,7 @@
 from agno.agent import Agent
 from agno.memory.agent import AgentMemory
 from agno.memory.db.postgres import PgMemoryDb
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.storage.postgres import PostgresStorage
@@ -12,7 +12,7 @@ db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 basic_agent = Agent(
     name="Basic Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     memory=AgentMemory(
         db=PgMemoryDb(
             table_name="agent_memory",

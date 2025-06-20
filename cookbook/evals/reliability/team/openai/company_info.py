@@ -2,21 +2,21 @@ from typing import Optional
 
 from agno.agent import Agent
 from agno.eval.reliability import ReliabilityEval, ReliabilityResult
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.team import TeamRunResponse
 from agno.team.team import Team
 from agno.tools.yfinance import YFinanceTools
 
 team_member = Agent(
     name="Stock Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a stock.",
     tools=[YFinanceTools(stock_price=True)],
 )
 
 team = Team(
     name="Stock Research Team",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[team_member],
     markdown=True,
     show_members_responses=True,

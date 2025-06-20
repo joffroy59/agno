@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 
 agent = Agent(
     model=Claude(

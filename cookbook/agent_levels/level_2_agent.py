@@ -1,7 +1,7 @@
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.vectordb.lancedb import LanceDb, SearchType
 
@@ -23,7 +23,7 @@ storage = SqliteStorage(table_name="agent_sessions", db_file="tmp/agent.db")
 
 agent = Agent(
     name="Agno Assist",
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="llama3.1:8b"),
     instructions=[
         "Search your knowledge before answering the question.",
         "Only include the output in your response. No other text.",

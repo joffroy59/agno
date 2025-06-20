@@ -34,10 +34,10 @@ from typing import Optional
 
 # Importing the Agent and model classes
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Importing storage and tool classes
 from agno.storage.agent.sqlite import SqliteAgentStorage

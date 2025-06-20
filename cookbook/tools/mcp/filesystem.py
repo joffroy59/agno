@@ -20,7 +20,7 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mcp import MCPTools
 
 
@@ -34,7 +34,7 @@ async def run_agent(message: str) -> None:
         f"npx -y @modelcontextprotocol/server-filesystem {file_path}"
     ) as mcp_tools:
         agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[mcp_tools],
             instructions=dedent("""\
                 You are a filesystem assistant. Help users explore files and directories.

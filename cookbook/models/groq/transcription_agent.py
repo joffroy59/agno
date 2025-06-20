@@ -6,14 +6,14 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.models.groq import GroqTools
 
 url = "https://agno-public.s3.amazonaws.com/demo_data/sample_conversation.wav"
 
 agent = Agent(
     name="Groq Transcription Agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[GroqTools(exclude_tools=["generate_speech"])],
     debug_mode=True,
 )

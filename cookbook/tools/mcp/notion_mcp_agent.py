@@ -19,7 +19,7 @@ import os
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mcp import MCPTools
 from mcp import StdioServerParameters
 
@@ -43,7 +43,7 @@ async def run_agent():
     async with MCPTools(server_params=server_params) as mcp_tools:
         agent = Agent(
             name="NotionDocsAgent",
-            model=OpenAIChat(id="gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[mcp_tools],
             description="Agent to query and modify Notion docs via MCP",
             instructions=dedent("""\

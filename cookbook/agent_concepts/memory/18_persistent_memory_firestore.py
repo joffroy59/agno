@@ -24,7 +24,7 @@ from agno.memory.v2.db.firestore import FirestoreMemoryDb
 from agno.memory.v2.memory import Memory
 from agno.models.anthropic.claude import Claude
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.firestore import FirestoreStorage
 
 agent_storage = FirestoreStorage(

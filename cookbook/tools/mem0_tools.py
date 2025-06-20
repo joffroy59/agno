@@ -5,14 +5,14 @@ This example demonstrates how to use the Mem0Tools class to interact with memori
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mem0 import Mem0Tools
 
 USER_ID = "jane_doe"
 SESSION_ID = "agno_session"
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[Mem0Tools()],
     user_id=USER_ID,
     session_id=SESSION_ID,

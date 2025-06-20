@@ -5,7 +5,7 @@ from agno.media import Image
 from agno.models.ollama import Ollama
 
 agent = Agent(
-    model=Ollama(id="llama3.2-vision"),
+    model=Ollama(id="qwen3:8b"),
     markdown=True,
 )
 

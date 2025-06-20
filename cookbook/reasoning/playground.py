@@ -1,12 +1,12 @@
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.tools.reasoning import ReasoningTools
 from agno.tools.yfinance import YFinanceTools
 
 claude_reasoning_agent = Agent(
     name="Claude Reasoning Finance Agent",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ReasoningTools(add_instructions=True),
         YFinanceTools(

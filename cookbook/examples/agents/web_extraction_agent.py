@@ -2,7 +2,7 @@ from textwrap import dedent
 from typing import Dict, List, Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.firecrawl import FirecrawlTools
 from pydantic import BaseModel, Field
 from rich.pretty import pprint
@@ -39,7 +39,7 @@ class PageInformation(BaseModel):
 
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[FirecrawlTools(scrape=True, crawl=True)],
     instructions=dedent("""
         You are an expert web researcher and content extractor. Extract comprehensive, structured information

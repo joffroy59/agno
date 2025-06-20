@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.models.groq import GroqTools
 from agno.utils.media import save_base64_data
 
@@ -9,7 +9,7 @@ path = "tmp/sample-fr.mp3"
 
 agent = Agent(
     name="Groq Translation Agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[GroqTools()],
 )
 

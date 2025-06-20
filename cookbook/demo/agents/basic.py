@@ -4,8 +4,8 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.memory.v2 import Memory
 from agno.memory.v2.db.postgres import PostgresMemoryDb
-from agno.models.anthropic import Claude
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.dalle import DalleTools
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -22,7 +22,7 @@ db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 # No need to set the model, it gets set by the agent to the agent's model
 memory = Memory(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     db=PostgresMemoryDb(table_name="user_memories", db_url=db_url),
     delete_memories=True,
     clear_memories=True,
@@ -48,7 +48,7 @@ web_agent = Agent(
     name="Web Agent",
     role="Search the web for information",
     agent_id="web-agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     instructions=[
         "Break down the users request into 2-3 different searches.",
@@ -69,7 +69,7 @@ finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
     agent_id="finance-agent",
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ReasoningTools(add_instructions=True),
         YFinanceTools(enable_all=True),
@@ -89,7 +89,7 @@ finance_agent = Agent(
 image_agent = Agent(
     name="Image Agent",
     agent_id="image_agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DalleTools(model="dall-e-3", size="1792x1024", quality="hd", style="vivid")],
     description="You are an AI agent that can generate images using DALL-E.",
     instructions=[
@@ -112,7 +112,7 @@ research_agent = Agent(
     name="Research Agent",
     role="Write research reports for the New York Times",
     agent_id="research-agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ExaTools(
             start_published_date=datetime.now().strftime("%Y-%m-%d"), type="keyword"
@@ -164,7 +164,7 @@ research_agent = Agent(
 youtube_agent = Agent(
     name="YouTube Agent",
     agent_id="youtube-agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[YouTubeTools()],
     description="You are a YouTube agent that has the special skill of understanding YouTube videos and answering questions about them.",
     instructions=[

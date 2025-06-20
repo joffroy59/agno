@@ -1,8 +1,8 @@
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.deepseek import DeepSeek
 from agno.models.mistral import MistralChat
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 
 japanese_agent = Agent(
@@ -18,7 +18,7 @@ chinese_agent = Agent(
 spanish_agent = Agent(
     name="Spanish Agent",
     role="You only answer in Spanish",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
 )
 french_agent = Agent(
     name="French Agent",
@@ -34,7 +34,7 @@ german_agent = Agent(
 multi_language_team = Team(
     name="Multi Language Team",
     mode="route",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[
         spanish_agent,
         japanese_agent,

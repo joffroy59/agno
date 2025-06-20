@@ -2,7 +2,7 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.media import File
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.utils.media import download_file
 
 pdf_path = Path(__file__).parent.joinpath("ThaiRecipes.pdf")
@@ -13,7 +13,7 @@ download_file(
 )
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     markdown=True,
 )
 

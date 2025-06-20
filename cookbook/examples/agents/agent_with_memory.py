@@ -2,19 +2,19 @@ from agno.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.manager import MemoryManager
 from agno.memory.v2.memory import Memory
-from agno.models.anthropic import Claude
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
+from agno.models.ollama import Ollama
 from rich.pretty import pprint
 
 user_id = "peter_rabbit"
 memory = Memory(
     db=SqliteMemoryDb(table_name="memory", db_file="tmp/memory.db"),
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
 )
 memory.clear()
 
 agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     user_id=user_id,
     memory=memory,
     # Enable the Agent to dynamically create and manage user memories

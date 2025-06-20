@@ -41,7 +41,7 @@ the Zoom API through natural language commands.
 import os
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.zoom import ZoomTools
 
 # Get environment variables
@@ -58,7 +58,7 @@ zoom_tools = ZoomTools(
 agent = Agent(
     name="Zoom Meeting Manager",
     agent_id="zoom-meeting-manager",
-    model=OpenAIChat(id="gpt-4"),
+    model=Ollama(id="mistral:latest"),
     tools=[zoom_tools],
     markdown=True,
     show_tool_calls=True,

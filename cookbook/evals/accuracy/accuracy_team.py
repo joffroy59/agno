@@ -2,25 +2,25 @@ from typing import Optional
 
 from agno.agent import Agent
 from agno.eval.accuracy import AccuracyEval, AccuracyResult
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 
 # Setup a team with two members
 english_agent = Agent(
     name="English Agent",
     role="You only answer in English",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
 )
 spanish_agent = Agent(
     name="Spanish Agent",
     role="You can only answer in Spanish",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
 )
 
 multi_language_team = Team(
     name="Multi Language Team",
     mode="route",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[english_agent, spanish_agent],
     markdown=True,
     instructions=[

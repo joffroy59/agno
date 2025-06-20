@@ -1,8 +1,8 @@
 from agno.agent import Agent
 from agno.cli.console import console
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.deepseek import DeepSeek
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 task = "9.11 and 9.9 -- which is bigger?"
 
@@ -12,9 +12,9 @@ reasoning_agent_claude = Agent(
     reasoning_model=DeepSeek(id="deepseek-reasoner"),
 )
 
-regular_agent_openai = Agent(model=OpenAIChat(id="gpt-4o"))
+regular_agent_openai = Agent(model=Ollama(id="mistral:latest"))
 reasoning_agent_openai = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning_model=DeepSeek(id="deepseek-reasoner"),
 )
 

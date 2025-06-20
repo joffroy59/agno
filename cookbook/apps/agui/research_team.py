@@ -1,12 +1,12 @@
 from agno.agent.agent import Agent
 from agno.app.agui.app import AGUIApp
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 
 researcher = Agent(
     name="researcher",
     role="Research Assistant",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions="You are a research assistant. Find information and provide detailed analysis.",
     markdown=True,
 )
@@ -14,7 +14,7 @@ researcher = Agent(
 writer = Agent(
     name="writer",
     role="Content Writer",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions="You are a content writer. Create well-structured content based on research.",
     markdown=True,
 )

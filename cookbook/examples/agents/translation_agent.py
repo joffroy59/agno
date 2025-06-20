@@ -6,7 +6,7 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.cartesia import CartesiaTools
 from agno.utils.media import save_audio
 
@@ -39,7 +39,7 @@ agent = Agent(
     name="Emotion-Aware Translator Agent",
     description="Translates text, analyzes emotion, selects a suitable voice,creates a localized voice, and generates a voice note (audio file) using Cartesia TTStools.",
     instructions=agent_instructions,
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[CartesiaTools(voice_localize_enabled=True)],
     show_tool_calls=True,
 )

@@ -5,11 +5,11 @@ Async example using Claude with tool calls.
 import asyncio
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
     markdown=True,

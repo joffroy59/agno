@@ -1,7 +1,7 @@
 from agno.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from rich.pretty import pprint
@@ -14,7 +14,7 @@ db_file = "tmp/agent.db"
 # Initialize memory.v2
 memory = Memory(
     # Use any model for creating memories
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     db=SqliteMemoryDb(table_name="user_memories", db_file=db_file),
 )
 # Initialize storage
@@ -22,7 +22,7 @@ storage = SqliteStorage(table_name="agent_sessions", db_file=db_file)
 
 # Initialize Agent
 memory_agent = Agent(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     # Store memories in a database
     memory=memory,
     # Give the Agent the ability to update memories

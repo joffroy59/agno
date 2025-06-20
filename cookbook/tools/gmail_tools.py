@@ -4,7 +4,7 @@ Gmail Agent that can read, draft and send emails using the Gmail.
 
 from agno.agent import Agent
 from agno.models.google import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.gmail import GmailTools
 from pydantic import BaseModel, Field
 
@@ -20,7 +20,7 @@ class FindEmailOutput(BaseModel):
 
 agent = Agent(
     name="Gmail Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[GmailTools()],
     description="You are an expert Gmail Agent that can read, draft and send emails using the Gmail.",
     instructions=[

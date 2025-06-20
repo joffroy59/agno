@@ -11,12 +11,12 @@ AgentQL will open up a browser instance (don't close it) and do scraping on the 
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.agentql import AgentQLTools
 
 # Create agent with default AgentQL tool
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"), tools=[AgentQLTools()], show_tool_calls=True
+    model=Ollama(id="mistral:latest"), tools=[AgentQLTools()], show_tool_calls=True
 )
 agent.print_response("https://docs.agno.com/introduction", markdown=True)
 
@@ -33,6 +33,6 @@ custom_scraper = AgentQLTools(agentql_query=custom_query)
 
 # Create agent with custom AgentQL tool
 custom_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"), tools=[custom_scraper], show_tool_calls=True
+    model=Ollama(id="mistral:latest"), tools=[custom_scraper], show_tool_calls=True
 )
 custom_agent.print_response("https://docs.agno.com/introduction", markdown=True)

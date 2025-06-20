@@ -3,7 +3,7 @@
 from typing import Any, Callable, Dict
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.log import logger
 
@@ -21,7 +21,7 @@ def logger_hook(function_name: str, function_call: Callable, arguments: Dict[str
 
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"), tools=[DuckDuckGoTools()], tool_hooks=[logger_hook]
+    model=Ollama(id="mistral:latest"), tools=[DuckDuckGoTools()], tool_hooks=[logger_hook]
 )
 
 agent.print_response("What's happening in the world?", stream=True, markdown=True)

@@ -1,7 +1,7 @@
 from typing import Optional
 
 from agno.eval.accuracy import AccuracyEval, AccuracyResult
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 evaluation = AccuracyEval(
     name="Given Answer Evaluation",

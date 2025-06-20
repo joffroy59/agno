@@ -2,13 +2,13 @@ from textwrap import dedent
 
 from agno.agent import Agent
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 
 player_1 = Agent(
     name="Player 1",
     role="Play Tic Tac Toe",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     add_name_to_instructions=True,
     instructions=dedent("""
     You are a Tic Tac Toe player.
@@ -33,7 +33,7 @@ player_2 = Agent(
 agent_team = Team(
     name="Tic Tac Toe Team",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     success_criteria="The game is won by one of the players.",
     members=[player_1, player_2],
     instructions=[

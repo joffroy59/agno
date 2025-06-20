@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 
@@ -8,13 +8,13 @@ researcher = Agent(
     name="Researcher",
     role="Expert at finding information",
     tools=[DuckDuckGoTools()],
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
 )
 
 writer = Agent(
     name="Writer",
     role="Expert at writing clear, engaging content",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
 )
 
 # Create a team with these agents
@@ -23,7 +23,7 @@ content_team = Team(
     mode="coordinate",
     members=[researcher, writer],
     instructions="You are a team of researchers and writers that work together to create high-quality content.",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     show_members_responses=True,
 )
 

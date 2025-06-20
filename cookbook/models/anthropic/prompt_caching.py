@@ -10,7 +10,7 @@ You can check more about prompt caching with Anthropic models here: https://docs
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.utils.media import download_file
 
 # Load an example large system message from S3. A large prompt like this would benefit from caching.

@@ -2,7 +2,7 @@ import asyncio
 
 from agno.agent import Agent
 from agno.knowledge.light_rag import LightRagKnowledgeBase, lightrag_retriever
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 
 # Create a knowledge base, loaded with documents from a URL
 knowledge_base = LightRagKnowledgeBase(
@@ -22,7 +22,7 @@ asyncio.run(
 
 # Create an agent with the knowledge base and the retriever
 agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     # Agentic RAG is enabled by default when `knowledge` is provided to the Agent.
     knowledge=knowledge_base,
     retriever=lightrag_retriever,

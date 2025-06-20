@@ -16,15 +16,15 @@ Example prompts to try:
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.reasoning import ReasoningTools
 
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ReasoningTools(add_instructions=True)],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
-        
+
         Your approach to problems:
         1. First, break down complex questions into component parts
         2. Clearly state your assumptions

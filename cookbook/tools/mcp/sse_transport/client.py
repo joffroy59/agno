@@ -6,7 +6,7 @@ Check the README.md file for instructions on how to run these examples.
 import asyncio
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mcp import MCPTools, MultiMCPTools
 
 # This is the URL of the MCP server we want to use.
@@ -16,7 +16,7 @@ server_url = "http://localhost:8000/sse"
 async def run_agent(message: str) -> None:
     async with MCPTools(transport="sse", url=server_url) as mcp_tools:
         agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[mcp_tools],
             markdown=True,
         )
@@ -32,7 +32,7 @@ async def run_agent_with_multimcp(message: str) -> None:
         urls_transports=["sse"],
     ) as mcp_tools:
         agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[mcp_tools],
             markdown=True,
         )

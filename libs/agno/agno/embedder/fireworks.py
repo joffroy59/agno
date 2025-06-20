@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from os import getenv
 from typing import Optional
 
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 
 
 @dataclass

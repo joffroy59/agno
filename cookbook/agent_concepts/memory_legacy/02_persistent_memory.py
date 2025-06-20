@@ -9,14 +9,14 @@ import json
 
 from agno.agent import Agent
 from agno.memory import AgentMemory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from rich.console import Console
 from rich.json import JSON
 from rich.panel import Panel
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     memory=AgentMemory(),
     # Store agent sessions in a database
     storage=SqliteAgentStorage(

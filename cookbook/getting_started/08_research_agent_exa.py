@@ -23,7 +23,7 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.exa import ExaTools
 
 cwd = Path(__file__).parent.resolve()
@@ -34,7 +34,7 @@ if not tmp.exists():
 today = datetime.now().strftime("%Y-%m-%d")
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ExaTools(start_published_date=today, type="keyword")],
     description=dedent("""\
         You are Professor X-1000, a distinguished AI research scientist with expertise

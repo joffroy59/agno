@@ -17,12 +17,12 @@ Run: `pip install openai youtube_transcript_api agno` to install the dependencie
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.youtube import YouTubeTools
 
 youtube_agent = Agent(
     name="YouTube Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[YouTubeTools()],
     show_tool_calls=True,
     instructions=dedent("""\

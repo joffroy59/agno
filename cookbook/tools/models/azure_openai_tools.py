@@ -18,7 +18,7 @@ from os import getenv
 
 from agno.agent import Agent
 from agno.models.azure import AzureOpenAI
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.models.azure_openai import AzureOpenAITools
 
 # Check for base requirements first - needed for all examples
@@ -42,7 +42,7 @@ print(
 )
 
 standard_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),  # Using standard OpenAI for the agent
+    model=Ollama(id="mistral:latest"),  # Using standard OpenAI for the agent
     tools=[AzureOpenAITools()],  # Using Azure OpenAI for image generation
     name="Mixed OpenAI Generator",
     description="An AI assistant that uses standard OpenAI for chat and Azure OpenAI for image generation",

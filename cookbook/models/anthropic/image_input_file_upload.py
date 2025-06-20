@@ -6,7 +6,7 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.media import Image
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.utils.media import download_file
 from anthropic import Anthropic
 

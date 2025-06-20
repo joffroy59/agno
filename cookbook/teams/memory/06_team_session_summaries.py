@@ -10,16 +10,16 @@ import asyncio
 
 from agno.agent import Agent
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 
-memory = Memory(model=OpenAIChat("gpt-4o"))
+memory = Memory(model=Ollama(id="mistral:latest"))
 
 web_searcher = Agent(
     name="Web Searcher",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information.",
     tools=[DuckDuckGoTools(cache_results=True)],
     storage=SqliteAgentStorage(
@@ -31,7 +31,7 @@ web_searcher = Agent(
 team = Team(
     name="Friendly Team",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     storage=SqliteAgentStorage(
         table_name="team_sessions", db_file="tmp/persistent_memory.db"
     ),

@@ -7,7 +7,7 @@ from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.media import download_image
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     markdown=True,
 )

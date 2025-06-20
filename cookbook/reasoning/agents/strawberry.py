@@ -2,13 +2,13 @@ import asyncio
 
 from agno.agent import Agent
 from agno.cli.console import console
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 task = "How many 'r' are in the word 'strawberry'?"
 
-regular_agent = Agent(model=OpenAIChat(id="gpt-4o"), markdown=True)
+regular_agent = Agent(model=Ollama(id="mistral:latest"), markdown=True)
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning=True,
     markdown=True,
 )

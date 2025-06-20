@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.eleven_labs import ElevenLabsTools
@@ -12,7 +12,7 @@ image_agent_storage_file: str = "tmp/image_agent.db"
 blog_to_podcast_agent = Agent(
     name="Blog to Podcast Agent",
     agent_id="blog_to_podcast_agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ElevenLabsTools(
             voice_id="JBFqnCBsd6RMkjVDRZzb",

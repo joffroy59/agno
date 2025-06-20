@@ -1,7 +1,7 @@
 from typing import List
 
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from pydantic import BaseModel, Field
 from rich.pretty import pprint  # noqa
 
@@ -26,7 +26,7 @@ class MovieScript(BaseModel):
 
 
 movie_agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     description="You help people write movie scripts.",
     response_model=MovieScript,
 )

@@ -16,13 +16,13 @@ clickup space url structure: https://app.clickup.com/{MASTER_SPACE_ID}/v/o/s/{SP
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.clickup_tool import ClickUpTools
 
 clickup_agent = Agent(
     name="ClickUp Agent",
     role="Manage ClickUp tasks and spaces",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[ClickUpTools(list_spaces=True, list_lists=True, list_tasks=True)],
     instructions=[
         "You are a ClickUp assistant that helps users manage their tasks and spaces.",

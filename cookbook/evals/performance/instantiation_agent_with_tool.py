@@ -4,7 +4,7 @@ from typing import Literal
 
 from agno.agent import Agent
 from agno.eval.performance import PerformanceEval
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 
 def get_weather(city: Literal["nyc", "sf"]):
@@ -19,7 +19,7 @@ tools = [get_weather]
 
 
 def instantiate_agent():
-    return Agent(model=OpenAIChat(id="gpt-4o"), tools=tools)
+    return Agent(model=Ollama(id="mistral:latest"), tools=tools)
 
 
 instantiation_perf = PerformanceEval(

@@ -3,7 +3,7 @@ import wave
 from typing import Iterator
 
 from agno.agent import Agent, RunResponseEvent  # noqa
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Audio Configuration
 SAMPLE_RATE = 24000  # Hz (24kHz)

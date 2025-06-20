@@ -11,7 +11,7 @@ import asyncio
 from os import getenv
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.tools.mcp import MCPTools
 from agno.utils.pprint import apprint_run_response
 
@@ -24,7 +24,7 @@ async def run_agent(message: str) -> None:
         },
     ) as mcp_tools:
         agent = Agent(
-            model=Claude(id="claude-sonnet-4-20250514"),
+            model=Ollama(id="mistral:latest"),
             tools=[mcp_tools],
             markdown=True,
         )

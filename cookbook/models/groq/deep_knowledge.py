@@ -19,7 +19,7 @@ from typing import List, Optional
 import inquirer
 import typer
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
 from agno.models.groq import Groq
 from agno.storage.sqlite import SqliteStorage
@@ -37,7 +37,7 @@ def initialize_knowledge_base():
             uri="tmp/lancedb",
             table_name="deep_knowledge_knowledge",
             search_type=SearchType.hybrid,
-            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+            embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
         ),
     )
     # Load the knowledge base (comment out after first run)

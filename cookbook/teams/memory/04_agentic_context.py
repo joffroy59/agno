@@ -9,7 +9,7 @@ Steps:
 from agno.agent import Agent
 from agno.memory.v2.memory import Memory
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -19,7 +19,7 @@ memory = Memory(model=Gemini(id="gemini-2.0-flash-exp"))
 
 stock_searcher = Agent(
     name="Stock Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a stock.",
     tools=[YFinanceTools(cache_results=True)],
     storage=SqliteAgentStorage(
@@ -30,7 +30,7 @@ stock_searcher = Agent(
 
 web_searcher = Agent(
     name="Web Searcher",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a company.",
     tools=[DuckDuckGoTools(cache_results=True)],
     storage=SqliteAgentStorage(
@@ -42,7 +42,7 @@ web_searcher = Agent(
 team = Team(
     name="Stock Team",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     storage=SqliteAgentStorage(
         table_name="team_sessions", db_file="tmp/persistent_memory.db"
     ),

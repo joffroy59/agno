@@ -2,9 +2,9 @@ import asyncio
 from typing import Iterator  # noqa
 
 from agno.agent import Agent, RunResponseEvent  # noqa
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
-agent = Agent(model=OpenAIChat(id="gpt-4o"), markdown=True)
+agent = Agent(model=Ollama(id="mistral:latest"), markdown=True)
 
 # Get the response in a variable
 run_response: Iterator[RunResponseEvent] = agent.run(

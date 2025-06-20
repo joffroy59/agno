@@ -8,14 +8,14 @@ Run `pip install openai agno` to install the necessary dependencies.
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.openai import OpenAITools
 from agno.utils.media import save_base64_data
 
 output_file: str = Path("tmp/speech_output.mp3")
 
 agent: Agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[OpenAITools()],
     markdown=True,
     show_tool_calls=True,

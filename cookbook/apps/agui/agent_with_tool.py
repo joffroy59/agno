@@ -1,10 +1,10 @@
 from agno.agent.agent import Agent
 from agno.app.agui.app import AGUIApp
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(
             stock_price=True, analyst_recommendations=True, stock_fundamentals=True

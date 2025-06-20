@@ -8,7 +8,7 @@ import json
 
 import httpx
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground
 from agno.storage.postgres import PostgresStorage
 from agno.tools import tool

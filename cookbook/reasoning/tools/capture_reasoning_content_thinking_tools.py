@@ -8,14 +8,14 @@ when using ThinkingTools, in both streaming and non-streaming modes.
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.thinking import ThinkingTools
 
 print("\n=== Example 1: Using ThinkingTools in non-streaming mode ===\n")
 
 # Create agent with ThinkingTools
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ThinkingTools(add_instructions=True)],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
@@ -48,7 +48,7 @@ print("\n\n=== Example 2: Using ThinkingTools in streaming mode ===\n")
 
 # Create a fresh agent for streaming
 streaming_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ThinkingTools(add_instructions=True)],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠

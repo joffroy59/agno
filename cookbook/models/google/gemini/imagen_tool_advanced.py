@@ -8,12 +8,12 @@ Run `pip install google-genai agno` to install the required packages.
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.models.gemini import GeminiTools
 from agno.utils.media import save_base64_data
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         GeminiTools(
             image_generation_model="imagen-4.0-generate-preview-05-20", vertexai=True

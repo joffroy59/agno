@@ -2,11 +2,11 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.tools.dalle import DalleTools
 from agno.tools.eleven_labs import ElevenLabsTools
@@ -100,11 +100,11 @@ instructions = dedent("""\
 agno_assist = Agent(
     name="Agno Assist",
     agent_id="agno-assist",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description=description,
     instructions=instructions,
     memory=Memory(
-        model=OpenAIChat(id="gpt-4.1"),
+        model=Ollama(id="mistral:latest"),
         db=PostgresMemoryDb(table_name="user_memories", db_url=db_url),
         delete_memories=True,
         clear_memories=True,
@@ -116,7 +116,7 @@ agno_assist = Agent(
             db_url=db_url,
             table_name="agno_assist_knowledge",
             search_type=SearchType.hybrid,
-            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+            embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
         ),
     ),
     search_knowledge=True,

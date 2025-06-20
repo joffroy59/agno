@@ -6,7 +6,7 @@ from agno.knowledge.json import JSONKnowledgeBase
 from agno.knowledge.pdf import PDFKnowledgeBase
 from agno.knowledge.text import TextKnowledgeBase
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.postgres import PostgresStorage
 from agno.vectordb.pgvector import PgVector

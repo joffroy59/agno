@@ -2,9 +2,9 @@
 Run `pip install openai duckduckgo-search yfinance lancedb tantivy pypdf agno` to install dependencies."""
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
@@ -12,7 +12,7 @@ from agno.vectordb.lancedb import LanceDb, SearchType
 
 # Level 0: Agents with no tools (basic inference tasks).
 level_0_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="You are an enthusiastic news reporter with a flair for storytelling!",
     markdown=True,
 )
@@ -22,7 +22,7 @@ level_0_agent.print_response(
 
 # Level 1: Agents with tools for autonomous task execution.
 level_1_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="You are an enthusiastic news reporter with a flair for storytelling!",
     tools=[DuckDuckGoTools()],
     show_tool_calls=True,
@@ -34,7 +34,7 @@ level_1_agent.print_response(
 
 # Level 2: Agents with knowledge, combining memory and reasoning.
 level_2_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="You are a Thai cuisine expert!",
     instructions=[
         "Search your knowledge base for Thai recipes.",
@@ -47,7 +47,7 @@ level_2_agent = Agent(
             uri="tmp/lancedb",
             table_name="recipes",
             search_type=SearchType.hybrid,
-            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+            embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
         ),
     ),
     tools=[DuckDuckGoTools()],
@@ -67,7 +67,7 @@ level_2_agent.print_response("What is the history of Thai curry?", stream=True)
 web_agent = Agent(
     name="Web Agent",
     role="Search the web for information",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     instructions="Always include sources",
     show_tool_calls=True,
@@ -77,7 +77,7 @@ web_agent = Agent(
 finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
     ],
@@ -88,7 +88,7 @@ finance_agent = Agent(
 
 level_3_agent_team = Team(
     members=[web_agent, finance_agent],
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     mode="coordinate",
     success_criteria="A comprehensive financial news report with clear sections and data-driven insights.",
     instructions=["Always include sources", "Use tables to display data"],

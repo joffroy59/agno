@@ -1,7 +1,7 @@
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.utils.log import logger
 from agno.utils.pprint import pprint_run_response
 from agno.workflow import Workflow
@@ -9,7 +9,7 @@ from agno.workflow import Workflow
 
 class CacheWorkflow(Workflow):
     # Add agents or teams as attributes on the workflow
-    agent = Agent(model=OpenAIChat(id="gpt-4o-mini"))
+    agent = Agent(model=Ollama(id="mistral:latest"))
 
     # Write the logic in the `run()` method
     def run(self, message: str) -> Iterator[RunResponse]:

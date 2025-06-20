@@ -10,8 +10,8 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.google import Gemini
-from agno.tools.openai import OpenAITools
+from agno.models.ollama import Ollama
+from agno.models.ollama import OllamaTools
 from agno.tools.reasoning import ReasoningTools
 from agno.utils.media import download_file, save_base64_data
 
@@ -24,8 +24,8 @@ print(f"Downloading file to local path: {local_audio_path}")
 download_file(input_audio_url, local_audio_path)
 
 meeting_agent: Agent = Agent(
-    model=Gemini(id="gemini-2.0-flash"),
-    tools=[OpenAITools(), ReasoningTools()],
+    model=Ollama(id="mistral:latest"),
+    tools=[OllamaTools(id="miostral:latest"), ReasoningTools()],
     description=dedent("""\
         You are an efficient Meeting Assistant AI.
         Your purpose is to process audio recordings of meetings, extract key information,

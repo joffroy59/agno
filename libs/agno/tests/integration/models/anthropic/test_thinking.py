@@ -1,7 +1,7 @@
 import pytest
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.run.response import RunResponse
 from agno.tools.yfinance import YFinanceTools
 

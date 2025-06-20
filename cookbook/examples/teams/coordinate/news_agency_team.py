@@ -6,7 +6,7 @@
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.newspaper4k import Newspaper4kTools
@@ -50,7 +50,7 @@ writer = Agent(
 editor = Team(
     name="Editor",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[searcher, writer],
     description="You are a senior NYT editor. Given a topic, your goal is to write a NYT worthy article.",
     instructions=[

@@ -13,7 +13,7 @@ common_instructions = [
 coding_agent = Agent(
     name="Coding Agent",
     agent_id="coding_agent",
-    model=Ollama(id="hhao/qwen2.5-coder-tools:32b"),
+    model=Ollama(id="qwen2.5-coder:7b"),
     reasoning=True,
     markdown=True,
     add_history_to_messages=True,

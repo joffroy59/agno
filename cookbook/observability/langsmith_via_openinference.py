@@ -13,7 +13,7 @@ This example shows how to instrument your agno agent with OpenInference and send
 import os
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 from openinference.instrumentation.agno import AgnoInstrumentor
 from opentelemetry import trace as trace_api
@@ -39,7 +39,7 @@ AgnoInstrumentor().instrument()
 
 agent = Agent(
     name="Stock Market Agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     markdown=True,
     debug_mode=True,

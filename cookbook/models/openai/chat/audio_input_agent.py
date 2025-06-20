@@ -1,7 +1,7 @@
 import requests
 from agno.agent import Agent, RunResponse  # noqa
 from agno.media import Audio
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Fetch the audio file and convert it to a base64 encoded string
 url = "https://openaiassets.blob.core.windows.net/$web/API/docs/audio/alloy.wav"

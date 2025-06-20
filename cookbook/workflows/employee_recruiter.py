@@ -14,7 +14,7 @@ except ImportError:
         "pypdf is not installed. Please install it using `pip install pypdf`"
     )
 from agno.agent.agent import Agent
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.resend import ResendTools
 from agno.utils.log import logger
 from agno.workflow.workflow import Workflow
@@ -46,7 +46,7 @@ current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 class EmployeeRecruitmentWorkflow(Workflow):
     screening_agent: Agent = Agent(
         description="You are an HR agent that screens candidates for a job interview.",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "You are an expert HR agent that screens candidates for a job interview.",
             "You are given a candidate's name and resume and job description.",
@@ -59,7 +59,7 @@ class EmployeeRecruitmentWorkflow(Workflow):
 
     interview_scheduler_agent: Agent = Agent(
         description="You are an interview scheduler agent that schedules interviews for candidates.",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "You are an interview scheduler agent that schedules interviews for candidates.",
             "You need to schedule interviews for the candidates using the Zoom tool.",
@@ -79,7 +79,7 @@ class EmployeeRecruitmentWorkflow(Workflow):
 
     email_writer_agent: Agent = Agent(
         description="You are an expert email writer agent that writes emails to selected candidates.",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "You are an expert email writer agent that writes emails to selected candidates.",
             "You need to write an email and send it to the candidates using the Resend tool.",
@@ -94,7 +94,7 @@ class EmployeeRecruitmentWorkflow(Workflow):
 
     email_sender_agent: Agent = Agent(
         description="You are an expert email sender agent that sends emails to selected candidates.",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "You are an expert email sender agent that sends emails to selected candidates.",
             "You need to send an email to the candidate using the Resend tool.",

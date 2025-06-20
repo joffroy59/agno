@@ -2,8 +2,8 @@ import random
 from typing import List
 
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.anthropic import Claude
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
+from agno.models.ollama import Ollama
 from pydantic import BaseModel, Field
 from rich.pretty import pprint  # noqa
 
@@ -57,10 +57,10 @@ class NationalParkAdventure(BaseModel):
 
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     description="You help people plan amazing national park adventures and provide detailed park guides.",
     response_model=NationalParkAdventure,
-    parser_model=OpenAIChat(id="gpt-4o"),
+    parser_model=Ollama(id="mistral:latest"),
 )
 
 # Get the response in a variable

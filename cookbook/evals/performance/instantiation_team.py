@@ -2,10 +2,10 @@
 
 from agno.agent import Agent
 from agno.eval.performance import PerformanceEval
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 
-team_member = Agent(model=OpenAIChat(id="gpt-4o"))
+team_member = Agent(model=Ollama(id="mistral:latest"))
 
 
 def instantiate_team():

@@ -7,7 +7,7 @@ If the agent doesn't have enough information to complete a task, it will use the
 from typing import Any, Dict, List
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.function import UserInputField
 from agno.tools.toolkit import Toolkit
 from agno.tools.user_control_flow import UserControlFlowTools

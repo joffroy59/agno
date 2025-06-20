@@ -3,12 +3,12 @@ from textwrap import dedent
 from typing import List, Optional
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.tools.mcp import MCPTools
 from agno.vectordb.lancedb import LanceDb, SearchType
@@ -37,7 +37,7 @@ agent_knowledge = UrlKnowledge(
         uri=str(tmp_dir.joinpath("mcp_documentation")),
         table_name="mcp_documentation",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 # *************************************

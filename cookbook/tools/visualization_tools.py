@@ -8,12 +8,12 @@ Run: `pip install matplotlib` to install the dependencies
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.visualization import VisualizationTools
 
 # Create an agent with visualization capabilities
 viz_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[VisualizationTools(output_dir="business_charts")],
     instructions=[
         "You are a data visualization expert and business analyst.",
@@ -32,7 +32,7 @@ viz_agent.print_response(
     """
 Create a bar chart showing our Q4 sales performance:
 - December: $45,000
-- November: $38,000  
+- November: $38,000
 - October: $42,000
 - September: $35,000
 
@@ -118,7 +118,7 @@ print("🚀 ADVANCED EXAMPLE: Business Intelligence Dashboard")
 print("=" * 60 + "\n")
 
 bi_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[VisualizationTools(output_dir="dashboard_charts", enable_all=True)],
     instructions=[
         "You are a Business Intelligence analyst.",

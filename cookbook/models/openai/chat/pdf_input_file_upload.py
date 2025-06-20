@@ -6,13 +6,13 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.media import File
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 pdf_path = Path(__file__).parent.joinpath("ThaiRecipes.pdf")
 
 # Pass the local PDF file path directly; the client will inline small files or upload large files automatically
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     markdown=True,
     add_history_to_messages=True,
 )

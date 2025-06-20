@@ -5,10 +5,10 @@ We recommend using the appropriate reasoning model or passing reasoning=True for
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning_model=OpenAIChat(
         id="gpt-4o", max_tokens=1200
     ),  # Should default to manual COT because it is not a native reasoning model

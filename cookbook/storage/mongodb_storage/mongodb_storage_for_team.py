@@ -6,7 +6,7 @@
 from typing import List
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.mongodb import MongoDbStorage
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -25,14 +25,14 @@ class Article(BaseModel):
 
 hn_researcher = Agent(
     name="HackerNews Researcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Gets top stories from hackernews.",
     tools=[HackerNewsTools()],
 )
 
 web_searcher = Agent(
     name="Web Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a topic",
     tools=[DuckDuckGoTools()],
     add_datetime_to_instructions=True,
@@ -42,7 +42,7 @@ web_searcher = Agent(
 hn_team = Team(
     name="HackerNews Team",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[hn_researcher, web_searcher],
     storage=MongoDbStorage(
         collection_name="team_sessions", db_url=db_url, db_name="agno"

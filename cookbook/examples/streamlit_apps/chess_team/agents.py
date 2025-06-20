@@ -24,10 +24,10 @@ import sys
 from pathlib import Path
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.utils.log import logger
 

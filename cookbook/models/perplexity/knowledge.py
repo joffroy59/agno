@@ -1,7 +1,7 @@
 """Run `pip install duckduckgo-search sqlalchemy pgvector pypdf openai google.generativeai` to install dependencies."""
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
 from agno.models.perplexity import Perplexity
 from agno.vectordb.pgvector import PgVector
@@ -13,7 +13,7 @@ knowledge_base = PDFUrlKnowledgeBase(
     vector_db=PgVector(
         table_name="recipes",
         db_url=db_url,
-        embedder=OpenAIEmbedder(),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 knowledge_base.load(recreate=True)  # Comment out after first run

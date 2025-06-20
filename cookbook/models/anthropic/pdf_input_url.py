@@ -1,9 +1,9 @@
 from agno.agent import Agent
 from agno.media import File
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     markdown=True,
 )
 

@@ -2,7 +2,7 @@
 
 from agno.agent import Agent
 from agno.eval.performance import PerformanceEval
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 
 def run_agent():

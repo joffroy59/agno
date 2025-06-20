@@ -1,9 +1,9 @@
 from agno.agent import Agent
 from agno.memory.v2 import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     # Multi-user, multi-session only work with Memory.V2
     memory=Memory(),
     add_history_to_messages=True,

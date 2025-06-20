@@ -4,16 +4,16 @@ from textwrap import dedent
 from typing import Optional
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.combined import CombinedKnowledgeBase
 from agno.knowledge.json import JSONKnowledgeBase
 from agno.knowledge.text import TextKnowledgeBase
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.tools.file import FileTools
 from agno.tools.reasoning import ReasoningTools
@@ -59,7 +59,7 @@ agent_knowledge = CombinedKnowledgeBase(
         db_url=db_url,
         table_name="sql_agent_knowledge",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
     # 5 references are added to the prompt
     num_documents=5,
@@ -68,7 +68,7 @@ agent_knowledge = CombinedKnowledgeBase(
 
 # ************* Memory *************
 memory = Memory(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     db=PostgresMemoryDb(table_name="user_memories", db_url=db_url),
     delete_memories=True,
     clear_memories=True,

@@ -27,9 +27,9 @@ from typing import List, Optional
 import inquirer
 import typer
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.openai import Oll
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.tools.python import PythonTools
 from agno.vectordb.lancedb import LanceDb, SearchType
@@ -58,7 +58,7 @@ def initialize_knowledge_base(load_knowledge: bool = False):
             uri="tmp/lancedb",
             table_name="agno_assist_knowledge",
             search_type=SearchType.hybrid,
-            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+            embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
         ),
     )
     # Load the knowledge base
@@ -89,7 +89,7 @@ def create_agent(
     return Agent(
         name="AgnoAssist",
         session_id=session_id,
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=dedent("""\
         You are AgnoAssist, an advanced AI Agent specialized in the Agno framework.
         Your goal is to help developers understand and effectively use Agno by providing

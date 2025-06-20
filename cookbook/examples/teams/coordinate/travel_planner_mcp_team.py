@@ -23,7 +23,7 @@ from textwrap import dedent
 from typing import List, Optional
 
 from agno.agent import Agent
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.mcp import MCPTools
@@ -89,7 +89,7 @@ async def run_team():
         airbnb_agent = Agent(
             name="Airbnb",
             role="Airbnb Agent",
-            model=OpenAIChat("gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[airbnb_tools],
             instructions=dedent("""\
                 You are an agent that can find Airbnb listings for a given location.\
@@ -100,7 +100,7 @@ async def run_team():
         maps_agent = Agent(
             name="Google Maps",
             role="Location Services Agent",
-            model=OpenAIChat("gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[maps_tools],
             instructions=dedent("""\
                 You are an agent that helps find attractions, points of interest,
@@ -113,7 +113,7 @@ async def run_team():
         web_search_agent = Agent(
             name="Web Search",
             role="Web Search Agent",
-            model=OpenAIChat("gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[DuckDuckGoTools(cache_results=True)],
             instructions=dedent("""\
                 You are an agent that can search the web for information.
@@ -125,7 +125,7 @@ async def run_team():
         weather_search_agent = Agent(
             name="Weather Search",
             role="Weather Search Agent",
-            model=OpenAIChat("gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             tools=[DuckDuckGoTools()],
             instructions=dedent("""\
                 You are an agent that can search the web for information.
@@ -138,7 +138,7 @@ async def run_team():
         team = Team(
             name="SkyPlanner",
             mode="coordinate",
-            model=OpenAIChat("gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             members=[
                 airbnb_agent,
                 web_search_agent,

@@ -1,6 +1,6 @@
 from agno.agent import Agent
 from agno.knowledge.website import WebsiteKnowledgeBase
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.exa import ExaTools
@@ -24,7 +24,7 @@ feedback_channel = "testing"
 doc_researcher_agent = Agent(
     name="Doc researcher Agent",
     role="Search the knowledge base for information",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools(), ExaTools()],
     knowledge=knowledge_base,
     search_knowledge=True,
@@ -44,7 +44,7 @@ doc_researcher_agent = Agent(
 escalation_manager_agent = Agent(
     name="Escalation Manager Agent",
     role="Escalate the issue to the slack channel",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[SlackTools()],
     instructions=[
         "You are an escalation manager responsible for routing critical issues to the support team.",
@@ -60,7 +60,7 @@ escalation_manager_agent = Agent(
 feedback_collector_agent = Agent(
     name="Feedback Collector Agent",
     role="Collect feedback from the user",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[SlackTools()],
     description="You are an AI agent that can collect feedback from the user.",
     instructions=[

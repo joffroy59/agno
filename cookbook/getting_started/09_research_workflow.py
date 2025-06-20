@@ -25,7 +25,7 @@ from textwrap import dedent
 from typing import Dict, Iterator, Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.workflow import WorkflowCompletedEvent
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -68,7 +68,7 @@ class ResearchReportGenerator(Workflow):
     """)
 
     web_searcher: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         tools=[DuckDuckGoTools()],
         description=dedent("""\
         You are ResearchBot-X, an expert at discovering and evaluating academic and scientific sources.\
@@ -87,7 +87,7 @@ class ResearchReportGenerator(Workflow):
     )
 
     article_scraper: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         tools=[Newspaper4kTools()],
         description=dedent("""\
         You are ContentBot-X, an expert at extracting and structuring academic content.\
@@ -107,7 +107,7 @@ class ResearchReportGenerator(Workflow):
     )
 
     writer: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=dedent("""\
         You are Professor X-2000, a distinguished AI research scientist combining academic rigor with engaging narrative style.\
         """),

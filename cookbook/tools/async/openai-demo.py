@@ -2,7 +2,7 @@ import asyncio
 import time
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.utils.log import logger
 
 #####################################
@@ -50,7 +50,7 @@ async def atask3(delay: int):
 
 
 async_agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[atask2, atask1, atask3],
     show_tool_calls=True,
     markdown=True,
@@ -107,7 +107,7 @@ def task3(delay: int):
 
 
 sync_agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[task2, task1, task3],
     show_tool_calls=True,
     markdown=True,

@@ -1,10 +1,10 @@
 from agno.agent.agent import Agent
 from agno.app.agui.app import AGUIApp
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 chat_agent = Agent(
     name="Assistant",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions="You are a helpful AI assistant.",
     add_datetime_to_instructions=True,
     markdown=True,

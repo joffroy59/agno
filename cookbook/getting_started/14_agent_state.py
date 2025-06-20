@@ -18,7 +18,7 @@ Run `pip install openai agno` to install dependencies.
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 
 # Define a tool that increments our counter and returns the new value
@@ -30,7 +30,7 @@ def increment_counter(agent: Agent) -> str:
 
 # Create a State Manager Agent that maintains state
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     # Initialize the session state with a counter starting at 0
     session_state={"count": 0},
     tools=[increment_counter],

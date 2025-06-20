@@ -8,7 +8,7 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.vectordb.lancedb import LanceDb, SearchType
 
 # Setup paths
@@ -28,7 +28,7 @@ agent_knowledge = UrlKnowledge(
 
 agent_with_knowledge = Agent(
     name="Agent with Knowledge",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     knowledge=agent_knowledge,
     show_tool_calls=True,
     markdown=True,

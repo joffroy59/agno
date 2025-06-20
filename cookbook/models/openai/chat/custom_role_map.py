@@ -10,7 +10,7 @@ To run this example:
 from os import getenv
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Using these Mistral model and url as an example.
 model_id = "mistral-medium-2505"

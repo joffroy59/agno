@@ -1,10 +1,10 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.github import GithubTools
 from agno.tools.local_file_system import LocalFileSystemTools
 
 readme_gen_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     name="Readme Generator Agent",
     tools=[GithubTools(), LocalFileSystemTools()],
     markdown=True,

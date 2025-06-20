@@ -44,7 +44,7 @@ async def test_vegetarian_recipe_agent():
 
 # Example agent implementation
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 
 class VegetarianRecipeAgent:
@@ -56,7 +56,7 @@ class VegetarianRecipeAgent:
         self.history.append({"role": "user", "content": message})
 
         agent = Agent(
-            model=OpenAIChat(id="gpt-4o"),
+            model=Ollama(id="mistral:latest"),
             markdown=True,
             debug_mode=True,
             instructions="You are a vegetarian recipe agent",

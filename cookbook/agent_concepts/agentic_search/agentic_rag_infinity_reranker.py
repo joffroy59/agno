@@ -48,7 +48,7 @@ python cookbook/agent_concepts/agentic_search/agentic_rag_infinity_reranker.py
 from agno.agent import Agent
 from agno.embedder.cohere import CohereEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.reranker.infinity import InfinityReranker
 from agno.vectordb.lancedb import LanceDb, SearchType
 
@@ -76,7 +76,7 @@ knowledge_base = UrlKnowledge(
 )
 
 agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     # Agentic RAG is enabled by default when `knowledge` is provided to the Agent.
     knowledge=knowledge_base,
     # search_knowledge=True gives the Agent the ability to search on demand

@@ -3,7 +3,7 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.arxiv import ArxivTools
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -16,7 +16,7 @@ arxiv_download_dir.mkdir(parents=True, exist_ok=True)
 reddit_researcher = Agent(
     name="Reddit Researcher",
     role="Research a topic on Reddit",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     add_name_to_instructions=True,
     instructions=dedent("""
@@ -28,7 +28,7 @@ reddit_researcher = Agent(
 
 hackernews_researcher = Agent(
     name="HackerNews Researcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Research a topic on HackerNews.",
     tools=[HackerNewsTools()],
     add_name_to_instructions=True,
@@ -41,7 +41,7 @@ hackernews_researcher = Agent(
 
 academic_paper_researcher = Agent(
     name="Academic Paper Researcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Research academic papers and scholarly content",
     tools=[GoogleSearchTools(), ArxivTools(download_dir=arxiv_download_dir)],
     add_name_to_instructions=True,
@@ -56,7 +56,7 @@ academic_paper_researcher = Agent(
 
 twitter_researcher = Agent(
     name="Twitter Researcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Research trending discussions and real-time updates",
     tools=[DuckDuckGoTools()],
     add_name_to_instructions=True,
@@ -73,7 +73,7 @@ twitter_researcher = Agent(
 agent_team = Team(
     name="Discussion Team",
     mode="collaborate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[
         reddit_researcher,
         hackernews_researcher,

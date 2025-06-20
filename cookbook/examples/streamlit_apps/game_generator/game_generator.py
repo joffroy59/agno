@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.workflow import WorkflowCompletedEvent
 from agno.storage.workflow.sqlite import SqliteWorkflowStorage
 from agno.utils.log import logger
@@ -42,7 +42,7 @@ class GameGenerator(Workflow):
     game_developer: Agent = Agent(
         name="Game Developer Agent",
         description="You are a game developer that produces working HTML5 code.",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         instructions=[
             "Create a game based on the user's prompt. "
             "The game should be HTML5, completely self-contained and must be runnable simply by opening on a browser",
@@ -56,7 +56,7 @@ class GameGenerator(Workflow):
 
     qa_agent: Agent = Agent(
         name="QA Agent",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description="You are a game QA and you evaluate html5 code for correctness.",
         instructions=[
             "You will be given some HTML5 code."

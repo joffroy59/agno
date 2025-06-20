@@ -32,12 +32,12 @@ View the README for instructions on how to run the application.
 from typing import Optional
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge import AgentKnowledge
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.vectordb.pgvector import PgVector
@@ -75,7 +75,7 @@ def get_agentic_rag_agent(
             table_name="agentic_rag_documents",
             schema="ai",
             # Use OpenAI embeddings
-            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+            embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
         ),
         num_documents=3,  # Retrieve 3 most relevant documents
     )

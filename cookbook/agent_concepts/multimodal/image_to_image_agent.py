@@ -1,9 +1,9 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.fal import FalTools
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     agent_id="image-to-image",
     name="Image to Image Agent",
     tools=[FalTools()],

@@ -3,9 +3,9 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.memory.v2 import Memory
 from agno.memory.v2.db.postgres import PostgresMemoryDb
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.postgres import PostgresStorage
 from agno.team.team import Team
@@ -28,7 +28,7 @@ file_agent = Agent(
     name="File Upload Agent",
     agent_id="file-upload-agent",
     role="Answer questions about the uploaded files",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     storage=agent_storage,
     memory=memory,
     enable_user_memories=True,
@@ -71,7 +71,7 @@ audio_agent = Agent(
 web_agent = Agent(
     name="Web Agent",
     role="Search the web for information",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     agent_id="web_agent",
     instructions=[
@@ -88,7 +88,7 @@ finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
     agent_id="finance_agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
     ],
@@ -111,7 +111,7 @@ simple_agent = Agent(
     name="Simple Agent",
     role="Simple agent",
     agent_id="simple_agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions=["You are a simple agent"],
     memory=memory,
     enable_user_memories=True,
@@ -122,7 +122,7 @@ research_agent = Agent(
     name="Research Agent",
     role="Research agent",
     agent_id="research_agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions=["You are a research agent"],
     tools=[DuckDuckGoTools(), ExaTools()],
     memory=memory,
@@ -134,7 +134,7 @@ research_team = Team(
     name="Research Team",
     description="A team of agents that research the web",
     members=[research_agent, simple_agent],
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     mode="coordinate",
     team_id="research_team",
     success_criteria=dedent("""\
@@ -161,7 +161,7 @@ multimodal_team = Team(
     name="Multimodal Team",
     description="A team of agents that can handle multiple modalities",
     members=[file_agent, audio_agent, video_agent],
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     mode="route",
     team_id="multimodal_team",
     success_criteria=dedent("""\
@@ -190,7 +190,7 @@ financial_news_team = Team(
         audio_agent,
         video_agent,
     ],
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     mode="route",
     team_id="financial_news_team",
     instructions=[

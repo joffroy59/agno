@@ -1,7 +1,7 @@
 from typing import Iterator  # noqa
 from pydantic import BaseModel
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.yfinance import YFinanceTools
 
@@ -14,7 +14,7 @@ class StockAnalysis(BaseModel):
 
 stock_searcher = Agent(
     name="Stock Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     response_model=StockAnalysis,
     role="Searches the web for information on a stock.",
     tools=[
@@ -33,7 +33,7 @@ class CompanyAnalysis(BaseModel):
 
 company_info_agent = Agent(
     name="Company Info Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a stock.",
     response_model=CompanyAnalysis,
     tools=[
@@ -49,7 +49,7 @@ company_info_agent = Agent(
 team = Team(
     name="Stock Research Team",
     mode="route",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[stock_searcher, company_info_agent],
     markdown=True,
     show_members_responses=True,

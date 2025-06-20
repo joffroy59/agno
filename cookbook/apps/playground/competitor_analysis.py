@@ -21,14 +21,14 @@ Dependencies: `pip install openai firecrawl-py agno`
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.firecrawl import FirecrawlTools
 from agno.tools.reasoning import ReasoningTools
 
 competitor_analysis_agent = Agent(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     name="Competitor Analysis Agent",
     tools=[
         FirecrawlTools(

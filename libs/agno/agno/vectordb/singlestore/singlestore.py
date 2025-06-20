@@ -49,7 +49,7 @@ class SingleStore(VectorDb):
         self.metadata: MetaData = MetaData(schema=self.schema)
 
         if embedder is None:
-            from agno.embedder.openai import OpenAIEmbedder
+            from agno.embedder.ollama import OllamaEmbedder
 
             embedder = OpenAIEmbedder()
             log_info("Embedder not provided, using OpenAIEmbedder as default.")

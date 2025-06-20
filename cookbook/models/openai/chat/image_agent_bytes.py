@@ -2,12 +2,12 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.media import Image
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.media import download_image
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     markdown=True,
 )

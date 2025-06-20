@@ -27,14 +27,14 @@ from textwrap import dedent
 from typing import Optional
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.combined import CombinedKnowledgeBase
 from agno.knowledge.json import JSONKnowledgeBase
 from agno.knowledge.text import TextKnowledgeBase
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.tools.file import FileTools
 from agno.tools.reasoning import ReasoningTools
@@ -77,7 +77,7 @@ agent_knowledge = CombinedKnowledgeBase(
         table_name="sql_agent_knowledge",
         schema="ai",
         # Use OpenAI embeddings
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
     # 5 references are added to the prompt
     num_documents=5,

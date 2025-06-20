@@ -20,9 +20,9 @@ from typing import List, Optional
 
 import typer
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.vectordb.lancedb import LanceDb, SearchType
@@ -34,7 +34,7 @@ agent_knowledge = PDFUrlKnowledgeBase(
         uri="tmp/lancedb",
         table_name="recipe_knowledge",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 # Comment out after the knowledge base is loaded
@@ -58,7 +58,7 @@ def recipe_agent(user: str = "user"):
     agent = Agent(
         user_id=user,
         session_id=session_id,
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         instructions=dedent("""\
             You are a passionate and knowledgeable Thai cuisine expert! 🧑‍🍳
             Think of yourself as a combination of a warm, encouraging cooking instructor,

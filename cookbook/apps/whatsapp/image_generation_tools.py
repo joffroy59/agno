@@ -1,10 +1,10 @@
 from agno.agent import Agent
 from agno.app.whatsapp.app import WhatsappAPI
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.openai import OpenAITools
 
 image_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[OpenAITools(image_model="gpt-image-1")],
     markdown=True,
     show_tool_calls=True,

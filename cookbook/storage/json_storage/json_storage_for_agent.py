@@ -1,12 +1,12 @@
 """Run `pip install duckduckgo-search openai` to install dependencies."""
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.json import JsonStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     storage=JsonStorage(dir_path="tmp/agent_sessions_json"),
     tools=[DuckDuckGoTools()],
     add_history_to_messages=True,

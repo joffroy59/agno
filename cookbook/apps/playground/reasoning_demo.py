@@ -5,7 +5,7 @@ from textwrap import dedent
 
 from agno.agent import Agent
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.sqlite import SqliteStorage
 from agno.team import Team
@@ -26,7 +26,7 @@ finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
     agent_id="finance-agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(
             stock_price=True,
@@ -49,7 +49,7 @@ cot_agent = Agent(
     name="Chain-of-Thought Agent",
     role="Answer basic questions",
     agent_id="cot-agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     storage=SqliteStorage(
         table_name="cot_agent", db_file=agent_storage_file, auto_upgrade_schema=True
     ),
@@ -64,7 +64,7 @@ reasoning_model_agent = Agent(
     name="Reasoning Model Agent",
     role="Reasoning about Math",
     agent_id="reasoning-model-agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning_model=OpenAIChat(id="o3-mini"),
     instructions=["You are a reasoning agent that can reason about math."],
     show_tool_calls=True,
@@ -81,7 +81,7 @@ reasoning_tool_agent = Agent(
     name="Reasoning Tool Agent",
     role="Answer basic questions",
     agent_id="reasoning-tool-agent",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     storage=SqliteStorage(
         table_name="reasoning_tool_agent",
         db_file=agent_storage_file,
@@ -113,7 +113,7 @@ web_agent = Agent(
 thinking_tool_agent = Agent(
     name="Thinking Tool Agent",
     agent_id="thinking_tool_agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ThinkingTools(add_instructions=True), YFinanceTools(enable_all=True)],
     instructions=dedent("""\
         You are a seasoned Wall Street analyst with deep expertise in market analysis! 📊
@@ -180,7 +180,7 @@ knowledge_tools = KnowledgeTools(
 knowledge_agent = Agent(
     agent_id="knowledge_agent",
     name="Knowledge Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[knowledge_tools],
     show_tool_calls=True,
     markdown=True,
@@ -194,7 +194,7 @@ knowledge_agent = Agent(
 reasoning_finance_team = Team(
     name="Reasoning Finance Team",
     mode="coordinate",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[
         web_agent,
         finance_agent,

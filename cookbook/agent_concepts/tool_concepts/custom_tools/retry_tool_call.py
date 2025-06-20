@@ -1,6 +1,6 @@
 from agno.agent import Agent
 from agno.exceptions import RetryAgentRun
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.utils.log import logger
 
 

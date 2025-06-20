@@ -17,12 +17,12 @@ Remember to set your ModelsLabs API key in the environment variable `MODELS_LAB_
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.models_labs import ModelsLabTools
 
 # Create a Creative AI Video Director Agent
 video_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ModelsLabTools()],
     description=dedent("""\
         You are an experienced AI video director with expertise in various video styles,

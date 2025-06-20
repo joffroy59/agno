@@ -7,13 +7,13 @@ This example demonstrates how to create an agent that:
 """
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.x import XTools
 
 # Create the social media analysis agent
 social_media_agent = Agent(
     name="Social Media Analyst",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         XTools(
             include_post_metrics=True,

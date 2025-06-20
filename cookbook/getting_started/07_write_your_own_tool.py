@@ -18,7 +18,7 @@ from textwrap import dedent
 
 import httpx
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 
 def get_top_hackernews_stories(num_stories: int = 10) -> str:
@@ -50,7 +50,7 @@ def get_top_hackernews_stories(num_stories: int = 10) -> str:
 
 # Create a Tech News Reporter Agent with a Silicon Valley personality
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions=dedent("""\
         You are a tech-savvy Hacker News reporter with a passion for all things technology! 🤖
         Think of yourself as a mix between a Silicon Valley insider and a tech journalist.

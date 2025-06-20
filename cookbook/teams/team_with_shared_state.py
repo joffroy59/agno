@@ -1,5 +1,5 @@
 from agno.agent.agent import Agent
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team import Team
 
 
@@ -44,7 +44,7 @@ def remove_all_items(agent: Agent) -> str:
 shopping_list_agent = Agent(
     name="Shopping List Agent",
     role="Manage the shopping list",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[add_item, remove_item, remove_all_items],
     instructions=[
         "Find information about the company in the wikipedia",
@@ -66,7 +66,7 @@ def list_items(team: Team) -> str:
 shopping_team = Team(
     name="Shopping List Team",
     mode="coordinate",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     team_session_state={"shopping_list": []},
     tools=[list_items],
     members=[

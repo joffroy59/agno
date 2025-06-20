@@ -1,9 +1,9 @@
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 
 agent = Agent(
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[YFinanceTools(stock_price=True)],
     markdown=True,
 )

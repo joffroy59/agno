@@ -2,10 +2,10 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.media import Audio, File, Image  # type: ignore
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.deepseek import DeepSeek
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.calculator import CalculatorTools
 from agno.tools.dalle import DalleTools
@@ -18,7 +18,7 @@ from agno.utils.media import download_file
 web_agent = Agent(
     name="Web Agent",
     role="Search the web for information",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     instructions=["Always include sources"],
 )
@@ -26,7 +26,7 @@ web_agent = Agent(
 finance_agent = Agent(
     name="Finance Agent",
     role="Get financial data",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(stock_price=True, analyst_recommendations=True, company_info=True)
     ],
@@ -36,7 +36,7 @@ finance_agent = Agent(
 image_agent = Agent(
     name="Image Agent",
     role="Analyze or generate images",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DalleTools()],
     description="You are an AI agent that can analyze images or create images using DALL-E.",
     instructions=[
@@ -50,7 +50,7 @@ image_agent = Agent(
 file_analysis_agent = Agent(
     name="File Analysis Agent",
     role="Analyze files",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     description="You are an AI agent that can analyze files.",
     instructions=[
         "You are an AI agent that can analyze files.",
@@ -61,7 +61,7 @@ file_analysis_agent = Agent(
 writer_agent = Agent(
     name="Write Agent",
     role="Write content",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="You are an AI agent that can write content.",
     instructions=[
         "You are a versatile writer who can create content on any topic.",
@@ -80,7 +80,7 @@ audio_agent = Agent(
 
 calculator_agent = Agent(
     name="Calculator Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Calculate",
     tools=[
         CalculatorTools(
@@ -118,7 +118,7 @@ calculator_writer_team = Team(
 reasoning_agent = Agent(
     name="Reasoning Agent",
     role="Reasoning about Math",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     reasoning_model=DeepSeek(id="deepseek-reasoner"),
     instructions=["You are a reasoning agent that can reason about math."],
     show_tool_calls=True,
@@ -129,7 +129,7 @@ reasoning_agent = Agent(
 code_execution_agent = Agent(
     name="Code Execution Sandbox",
     agent_id="e2b-sandbox",
-    model=OpenAIChat(id="gpt-4o-mini"),
+    model=Ollama(id="mistral:latest"),
     tools=[E2BTools()],
     markdown=True,
     show_tool_calls=True,

@@ -10,7 +10,7 @@ import json
 
 from agno.agent import Agent, AgentMemory
 from agno.memory.db.sqlite import SqliteMemoryDb
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from rich.console import Console
 from rich.json import JSON
@@ -20,7 +20,7 @@ agent_memory_file: str = "tmp/agent_memory.db"
 agent_storage_file: str = "tmp/agent_storage.db"
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     # The memories are personalized for this user
     user_id="john_billings",
     # Store the memories and summary in a table: agent_memory

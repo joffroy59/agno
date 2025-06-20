@@ -24,12 +24,12 @@ from datetime import datetime
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.exa import ExaTools
 
 # Initialize the academic research agent with scholarly capabilities
 research_scholar = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ExaTools(
             start_published_date=datetime.now().strftime("%Y-%m-%d"), type="keyword"

@@ -14,7 +14,7 @@ import asyncio
 import os
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.mcp import MCPTools
 from agno.utils.log import log_exception
 
@@ -27,7 +27,7 @@ async def run_agent(task: str) -> None:
             url=mcp_server_url, transport="sse", timeout_seconds=20
         ) as mcp:
             agent = Agent(
-                model=OpenAIChat(id="gpt-4o-mini"),
+                model=Ollama(id="mistral:latest"),
                 tools=[mcp],
                 markdown=True,
             )

@@ -1,7 +1,7 @@
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.yfinance import YFinanceTools
 from agno.utils.pprint import pprint_run_response
@@ -9,7 +9,7 @@ from rich.pretty import pprint
 
 stock_searcher = Agent(
     name="Stock Searcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information on a stock.",
     tools=[YFinanceTools()],
 )
@@ -18,7 +18,7 @@ stock_searcher = Agent(
 team = Team(
     name="Stock Research Team",
     mode="route",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[stock_searcher],
     markdown=True,
     debug_mode=True,

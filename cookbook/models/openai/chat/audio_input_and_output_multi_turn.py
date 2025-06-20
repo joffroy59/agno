@@ -2,7 +2,7 @@ from pathlib import Path
 
 import requests
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.utils.audio import write_audio_to_file
 
 # Fetch the audio file and convert it to a base64 encoded string

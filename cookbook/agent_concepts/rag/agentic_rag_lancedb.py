@@ -4,9 +4,9 @@
 """
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.pdf_url import PDFUrlKnowledgeBase
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.vectordb.lancedb import LanceDb, SearchType
 
 # Create a knowledge base of PDFs from URLs
@@ -17,14 +17,14 @@ knowledge_base = PDFUrlKnowledgeBase(
         table_name="recipes",
         uri="tmp/lancedb",
         search_type=SearchType.vector,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 # Load the knowledge base: Comment after first run as the knowledge base is already loaded
 knowledge_base.load()
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     knowledge=knowledge_base,
     # Add a tool to search the knowledge base which enables agentic RAG.
     # This is enabled by default when `knowledge` is provided to the Agent.

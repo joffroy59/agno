@@ -1,7 +1,7 @@
 from agno.agent.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 
 memory = Memory(db=SqliteMemoryDb(table_name="agent_memories", db_file="tmp/memory.db"))

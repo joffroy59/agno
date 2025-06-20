@@ -2,13 +2,13 @@ import asyncio
 
 from agno.agent import RunEvent
 from agno.agent.agent import Agent
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 
 finance_agent = Agent(
     agent_id="finance-agent",
     name="Finance Agent",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[YFinanceTools()],
 )
 

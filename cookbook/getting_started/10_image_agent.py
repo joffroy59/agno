@@ -22,11 +22,11 @@ from textwrap import dedent
 
 from agno.agent import Agent
 from agno.media import Image
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.duckduckgo import DuckDuckGoTools
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description=dedent("""\
         You are a world-class visual journalist and cultural correspondent with a gift
         for bringing images to life through storytelling! 📸✨ With the observational skills

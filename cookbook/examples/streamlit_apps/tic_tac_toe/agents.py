@@ -15,7 +15,7 @@ from textwrap import dedent
 from typing import Tuple
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
 from agno.models.openai import OpenAIChat, OpenAIResponses

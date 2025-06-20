@@ -2,7 +2,7 @@ from typing import Optional
 
 from agno.agent import Agent
 from agno.eval.reliability import ReliabilityEval, ReliabilityResult
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.response import RunResponse
 from agno.tools.calculator import CalculatorTools
 

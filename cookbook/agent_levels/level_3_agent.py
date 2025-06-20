@@ -1,13 +1,13 @@
 from agno.agent import Agent
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.tools.reasoning import ReasoningTools
 from agno.tools.yfinance import YFinanceTools
 
 memory = Memory(
     # Use any model for creating and managing memories
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="llama3.1:8b"),
     # Store memories in a SQLite database
     db=SqliteMemoryDb(table_name="user_memories", db_file="tmp/agent.db"),
     # We disable deletion by default, enable it if needed
@@ -16,7 +16,7 @@ memory = Memory(
 )
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="llama3.1:8b"),
     tools=[
         ReasoningTools(add_instructions=True),
         YFinanceTools(

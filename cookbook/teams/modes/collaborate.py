@@ -24,7 +24,7 @@ import asyncio
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.hackernews import HackerNewsTools
@@ -32,7 +32,7 @@ from agno.tools.hackernews import HackerNewsTools
 reddit_researcher = Agent(
     name="Reddit Researcher",
     role="Research a topic on Reddit",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     add_name_to_instructions=True,
     instructions=dedent("""
@@ -44,7 +44,7 @@ reddit_researcher = Agent(
 
 hackernews_researcher = Agent(
     name="HackerNews Researcher",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Research a topic on HackerNews.",
     tools=[HackerNewsTools()],
     add_name_to_instructions=True,
@@ -59,7 +59,7 @@ hackernews_researcher = Agent(
 agent_team = Team(
     name="Discussion Team",
     mode="collaborate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[
         reddit_researcher,
         hackernews_researcher,

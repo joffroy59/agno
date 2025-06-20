@@ -2,7 +2,7 @@ from textwrap import dedent
 from typing import Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.github import GithubTools
 
 
@@ -14,7 +14,7 @@ def get_github_agent(debug_mode: bool = True) -> Optional[Agent]:
     """
 
     return Agent(
-        model=OpenAIChat(id="gpt-4.1"),
+        model=Ollama(id="mistral:latest"),
         description=dedent("""
             You are an expert Code Reviewing Agent specializing in analyzing GitHub repositories,
             with a strong focus on detailed code reviews for Pull Requests.

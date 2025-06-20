@@ -8,9 +8,9 @@ when using KnowledgeTools with URL knowledge, in both streaming and non-streamin
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.knowledge import KnowledgeTools
 from agno.vectordb.lancedb import LanceDb, SearchType
 
@@ -23,7 +23,7 @@ agno_docs = UrlKnowledge(
         uri="tmp/lancedb",
         table_name="cookbook_knowledge_tools",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 
@@ -42,7 +42,7 @@ print("\n=== Example 1: Using KnowledgeTools in non-streaming mode ===\n")
 
 # Create agent with KnowledgeTools
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         KnowledgeTools(
             knowledge=agno_docs,
@@ -54,7 +54,7 @@ agent = Agent(
     ],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
-        Use the knowledge tools to organize your thoughts, search for information, 
+        Use the knowledge tools to organize your thoughts, search for information,
         and analyze results step-by-step.
         \
     """),
@@ -85,7 +85,7 @@ print("\n\n=== Example 2: Using KnowledgeTools in streaming mode ===\n")
 
 # Create a fresh agent for streaming
 streaming_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         KnowledgeTools(
             knowledge=agno_docs,
@@ -97,7 +97,7 @@ streaming_agent = Agent(
     ],
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
-        Use the knowledge tools to organize your thoughts, search for information, 
+        Use the knowledge tools to organize your thoughts, search for information,
         and analyze results step-by-step.
         \
     """),

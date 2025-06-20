@@ -1,13 +1,13 @@
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.dalle import DalleTools
 from agno.utils.common import dataclass_to_dict
 from rich.pretty import pprint
 
 image_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DalleTools()],
     description="You are an AI agent that can create images using DALL-E.",
     instructions=[

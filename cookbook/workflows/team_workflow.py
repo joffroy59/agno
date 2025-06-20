@@ -2,7 +2,7 @@ from textwrap import dedent
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.team import TeamRunResponse
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -22,7 +22,7 @@ class TeamWorkflow(Workflow):
     reddit_researcher = Agent(
         name="Reddit Researcher",
         role="Research a topic on Reddit",
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         tools=[DuckDuckGoTools(cache_results=True)],
         add_name_to_instructions=True,
         instructions=dedent("""
@@ -34,7 +34,7 @@ class TeamWorkflow(Workflow):
 
     hackernews_researcher = Agent(
         name="HackerNews Researcher",
-        model=OpenAIChat("gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         role="Research a topic on HackerNews.",
         tools=[HackerNewsTools()],
         add_name_to_instructions=True,
@@ -48,7 +48,7 @@ class TeamWorkflow(Workflow):
     agent_team = Team(
         name="Discussion Team",
         mode="collaborate",
-        model=OpenAIChat("gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         members=[
             reddit_researcher,
             hackernews_researcher,

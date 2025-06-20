@@ -11,7 +11,7 @@ import asyncio
 import subprocess
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools import tool
 from agno.utils import pprint
 

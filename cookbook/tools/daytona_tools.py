@@ -12,7 +12,7 @@ This example shows how to use Agno's Daytona integration to run Agent-generated 
 """
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.tools.daytona import DaytonaTools
 
 daytona_tools = DaytonaTools()
@@ -21,7 +21,7 @@ daytona_tools = DaytonaTools()
 agent = Agent(
     name="Coding Agent with Daytona tools",
     agent_id="coding-agent",
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     tools=[daytona_tools],
     markdown=True,
     show_tool_calls=True,

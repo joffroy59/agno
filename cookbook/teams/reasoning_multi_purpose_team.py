@@ -17,10 +17,10 @@ from pathlib import Path
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.anthropic import Claude
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 from agno.tools.calculator import CalculatorTools
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -128,13 +128,13 @@ agno_assist_knowledge = UrlKnowledge(
         uri="tmp/lancedb",
         table_name="agno_assist_knowledge",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 agno_assist = Agent(
     name="Agno Assist",
     role="You help answer questions about the Agno framework.",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions="Search your knowledge before answering the question. Help me to write working code for Agno Agents.",
     tools=[
         KnowledgeTools(
@@ -148,7 +148,7 @@ agno_assist = Agent(
 github_agent = Agent(
     name="Github Agent",
     role="Do analysis on Github repositories",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions=[
         "Use your tools to answer questions about the repo: agno-agi/agno",
         "Do not create any issues or pull requests unless explicitly asked to do so",
@@ -168,7 +168,7 @@ github_agent = Agent(
 local_python_agent = Agent(
     name="Local Python Agent",
     role="Run Python code locally",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions=[
         "Use your tools to run Python code locally",
     ],
@@ -184,7 +184,7 @@ local_python_agent = Agent(
 agent_team = Team(
     name="Multi-Purpose Team",
     mode="coordinate",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ReasoningTools(add_instructions=True, add_few_shot=True),
     ],

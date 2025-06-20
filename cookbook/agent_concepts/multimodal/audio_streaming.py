@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Iterator
 
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Audio Configuration
 SAMPLE_RATE = 24000  # Hz (24kHz)

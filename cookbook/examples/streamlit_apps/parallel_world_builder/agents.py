@@ -20,7 +20,7 @@ from typing import List
 from agno.agent import Agent
 from agno.models.anthropic.claude import Claude
 from agno.models.google.gemini import Gemini
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from pydantic import BaseModel, Field
 
 

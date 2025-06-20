@@ -1,7 +1,7 @@
 from agno.agent import Agent, RunResponse  # noqa
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 
-agent = Agent(model=Claude(id="claude-sonnet-4-20250514"), markdown=True)
+agent = Agent(model=Ollama(id="mistral:latest"), markdown=True)
 
 # Get the response in a variable
 # run: RunResponse = agent.run("Share a 2 sentence horror story")

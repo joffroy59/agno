@@ -2,7 +2,7 @@ from typing import Optional
 
 from agno.agent import Agent
 from agno.eval.accuracy import AccuracyEval, AccuracyResult
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.calculator import CalculatorTools
 
 evaluation = AccuracyEval(

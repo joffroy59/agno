@@ -1,9 +1,9 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.models_labs import ModelsLabTools
 
 video_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[ModelsLabTools()],
     description="You are an AI agent that can generate videos using the ModelsLabs API.",
     instructions=[

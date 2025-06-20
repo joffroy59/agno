@@ -3,7 +3,7 @@ from typing import List
 from pydantic import BaseModel, Field
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.openai import OpenAIChat
 

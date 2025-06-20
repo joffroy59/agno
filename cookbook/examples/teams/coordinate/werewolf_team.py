@@ -4,7 +4,7 @@ from textwrap import dedent
 from agno.agent import Agent
 from agno.models.anthropic.claude import Claude
 from agno.models.deepseek.deepseek import DeepSeek
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team.team import Team
 
 # Create player agents (no separate moderator)
@@ -14,7 +14,7 @@ for i in range(1, 7):
         Agent(
             name=f"Player{i}",
             role="Werewolf Game Player",
-            model=OpenAIChat(id="gpt-4o-mini"),
+            model=Ollama(id="mistral:latest"),
             add_name_to_instructions=True,
             instructions=dedent(f"""
             You are Player{i} in a simplified Werewolf game.

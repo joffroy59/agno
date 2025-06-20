@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.playground import Playground, serve_playground_app
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -10,7 +10,7 @@ agent_storage: str = "tmp/agents.db"
 
 thinking_web_agent = Agent(
     name="Thinking Web Agent",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[ThinkingTools(add_instructions=True), DuckDuckGoTools()],
     instructions=["Always include sources"],
     # Store the agent sessions in a sqlite database
@@ -27,7 +27,7 @@ thinking_web_agent = Agent(
 
 thinking_finance_agent = Agent(
     name="Thinking Finance Agent",
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ThinkingTools(add_instructions=True),
         YFinanceTools(

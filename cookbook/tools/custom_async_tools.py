@@ -2,7 +2,7 @@ import asyncio
 from dataclasses import dataclass
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from pydantic import BaseModel
 
 
@@ -71,7 +71,7 @@ async def data_class_tool(name: str, age: int, city: str):
 
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         dict_tool,
         list_tool,

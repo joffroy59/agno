@@ -1,8 +1,8 @@
 from agno.agent import Agent
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.anthropic import Claude
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
+from agno.models.ollama import Ollama
 from agno.storage.agent.postgres import PostgresAgentStorage
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -15,7 +15,7 @@ db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 
 # ************* Memory *************
 memory = Memory(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     db=PostgresMemoryDb(table_name="user_memories", db_url=db_url),
     delete_memories=True,
     clear_memories=True,
@@ -27,7 +27,7 @@ web_agent = Agent(
     name="Web Search Agent",
     role="Handle web search requests and general research",
     agent_id="web_agent",
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     storage=PostgresAgentStorage(
         db_url=db_url,
@@ -50,7 +50,7 @@ finance_agent = Agent(
     name="Finance Agent",
     role="Handle financial data requests and market analysis",
     agent_id="finance_agent",
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(
             stock_price=True,
@@ -85,7 +85,7 @@ reasoning_finance_team = Team(
     name="Reasoning Finance Team",
     mode="coordinate",
     team_id="reasoning_finance_team",
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     members=[web_agent, finance_agent],
     tools=[ReasoningTools(add_instructions=True)],
     instructions=[

@@ -14,9 +14,9 @@ Steps to get started with weave:
 
 import weave
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
-agent = Agent(model=OpenAIChat(id="gpt-4o"), markdown=True, debug_mode=True)
+agent = Agent(model=Ollama(id="mistral:latest"), markdown=True, debug_mode=True)
 
 weave.init("agno")
 

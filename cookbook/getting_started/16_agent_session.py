@@ -16,7 +16,7 @@ from typing import Optional
 
 import typer
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from rich import print
 from rich.console import Console
@@ -45,7 +45,7 @@ def create_agent(user: str = "user"):
         user_id=user,
         # Set the session_id on the agent to resume the conversation
         session_id=session_id,
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         storage=agent_storage,
         # Add chat history to messages
         add_history_to_messages=True,

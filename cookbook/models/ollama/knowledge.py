@@ -13,13 +13,13 @@ knowledge_base = PDFUrlKnowledgeBase(
     vector_db=PgVector(
         table_name="recipes",
         db_url=db_url,
-        embedder=OllamaEmbedder(id="llama3.2", dimensions=3072),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest", dimensions=3072),
     ),
 )
 knowledge_base.load(recreate=True)  # Comment out after first run
 
 agent = Agent(
-    model=Ollama(id="llama3.2"),
+    model=Ollama(id="mistral:latest"),
     knowledge=knowledge_base,
     show_tool_calls=True,
 )

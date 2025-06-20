@@ -5,9 +5,9 @@
 """
 
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.knowledge import KnowledgeTools
 from agno.vectordb.lancedb import LanceDb, SearchType
 
@@ -19,7 +19,7 @@ agno_docs = UrlKnowledge(
         uri="tmp/lancedb",
         table_name="agno_docs",
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     ),
 )
 
@@ -32,7 +32,7 @@ knowledge_tools = KnowledgeTools(
 )
 
 agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[knowledge_tools],
     show_tool_calls=True,
     markdown=True,

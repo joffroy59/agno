@@ -1,6 +1,6 @@
 from agno.agent.agent import Agent
 from agno.media import File, Image
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 
 
 def test_image_input():

@@ -4,7 +4,7 @@ from agno.agent.agent import Agent
 from agno.memory.v2 import Memory
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.models.mistral.mistral import MistralChat
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.postgres import PostgresStorage
 from agno.team import Team
 
@@ -20,7 +20,7 @@ french_agent = Agent(
 english_agent = Agent(
     name="English Agent",
     role="You can only answer in English",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     instructions=[
         "You must only respond in English",
     ],
@@ -32,7 +32,7 @@ multi_language_team = Team(
     mode="route",
     team_id=str(uuid4()),
     user_id=user_id,
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[
         french_agent,
         english_agent,

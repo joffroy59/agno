@@ -14,7 +14,7 @@ from agno.memory.v2.memory import Memory
 from agno.models.anthropic.claude import Claude
 from agno.models.google.gemini import Gemini
 from agno.models.mistral.mistral import MistralChat
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.team.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -29,7 +29,7 @@ memory.clear()
 
 web_searcher = Agent(
     name="Web Searcher",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     role="Searches the web for information.",
     tools=[DuckDuckGoTools(cache_results=True)],
     storage=SqliteAgentStorage(
@@ -41,7 +41,7 @@ web_searcher = Agent(
 chat_team = Team(
     name="Chat Team",
     mode="coordinate",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     storage=SqliteAgentStorage(
         table_name="team_sessions", db_file="tmp/persistent_memory.db"
     ),
@@ -69,7 +69,7 @@ german_agent = Agent(
 multi_language_team = Team(
     name="Multi Language Team",
     mode="route",
-    model=OpenAIChat("gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     members=[
         french_agent,
         german_agent,

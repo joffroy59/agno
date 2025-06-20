@@ -1,11 +1,11 @@
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.tools.reasoning import ReasoningTools
 
 puzzle_master = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     tools=[ReasoningTools(add_instructions=True)],
     instructions=dedent("""\
     You are a puzzle master who creates and solves logic puzzles.

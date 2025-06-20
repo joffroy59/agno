@@ -1,10 +1,10 @@
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.crawl4ai import Crawl4aiTools
 
 # # Example 1: Basic usage
 agent = Agent(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[Crawl4aiTools(use_pruning=True)],
     instructions="You are a helpful assistant that can crawl the web and extract information. Use have access to crawl4ai tools to extract information from the web.",
 )

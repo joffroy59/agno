@@ -1,7 +1,7 @@
 from agno.agent.agent import Agent
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.postgres import PostgresStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"

@@ -9,12 +9,12 @@ Steps:
 from agno.agent import Agent
 from agno.memory.v2.db.postgres import PostgresMemoryDb
 from agno.memory.v2.memory import Memory
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.storage.postgres import PostgresStorage
 
 db_url = "postgresql+psycopg://ai:ai@localhost:5532/ai"
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     # Store the memories and summary in a database
     memory=Memory(
         db=PostgresMemoryDb(table_name="agent_memory", db_url=db_url),

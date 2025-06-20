@@ -5,14 +5,14 @@ from typing import List, Optional
 
 from agents import get_agent
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge import AgentKnowledge
 from agno.memory.v2 import Memory
 from agno.memory.v2.db.sqlite import SqliteMemoryDb
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.google import Gemini
 from agno.models.groq import Groq
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.sqlite import SqliteStorage
 from agno.team import Team
 from agno.tools import Toolkit
@@ -48,7 +48,7 @@ uagi_knowledge = AgentKnowledge(
         table_name="uagi_knowledge",
         uri=str(KNOWLEDGE_PATH),
         search_type=SearchType.hybrid,
-        embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
     )
 )
 

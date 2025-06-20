@@ -31,7 +31,7 @@ from textwrap import dedent
 from typing import Dict, Iterator, Optional
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.workflow import WorkflowCompletedEvent
 from agno.storage.sqlite import SqliteStorage
 from agno.tools.duckduckgo import DuckDuckGoTools
@@ -79,7 +79,7 @@ class BlogPostGenerator(Workflow):
 
     # Search Agent: Handles intelligent web searching and source gathering
     searcher: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         tools=[DuckDuckGoTools()],
         description=dedent("""\
         You are BlogResearch-X, an elite research assistant specializing in discovering
@@ -110,7 +110,7 @@ class BlogPostGenerator(Workflow):
 
     # Content Scraper: Extracts and processes article content
     article_scraper: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o-mini"),
+        model=Ollama(id="mistral:latest"),
         tools=[Newspaper4kTools()],
         description=dedent("""\
         You are ContentBot-X, a specialist in extracting and processing digital content
@@ -142,7 +142,7 @@ class BlogPostGenerator(Workflow):
 
     # Content Writer Agent: Crafts engaging blog posts from research
     writer: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=dedent("""\
         You are BlogMaster-X, an elite content creator combining journalistic excellence
         with digital marketing expertise. Your strengths include:

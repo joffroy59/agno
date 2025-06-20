@@ -1,5 +1,5 @@
 from agno.agent import Agent
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.models.groq import Groq
 
 deepseek_plus_claude = Agent(

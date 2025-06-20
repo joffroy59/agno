@@ -2,7 +2,7 @@ import json
 from typing import List, Optional
 
 from agno.agent import Agent, RunResponse
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.run.response import RunEvent
 from agno.tools.firecrawl import FirecrawlTools
 from agno.utils.log import logger
@@ -79,7 +79,7 @@ class ContentPlanningWorkflow(Workflow):
 
     # Blog Analyzer Agent: Extracts blog content (title, sections) and converts it into Markdown format for further use.
     blog_analyzer: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         tools=[
             FirecrawlTools(scrape=True, crawl=False)
         ],  # Enables blog scraping capabilities
@@ -96,7 +96,7 @@ class ContentPlanningWorkflow(Workflow):
     # Twitter Thread Planner: Creates a Twitter thread from the blog content, each tweet is concise, engaging,
     # and logically connected with relevant media.
     twitter_thread_planner: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=f"{agents_config['twitter_thread_planner']['role']} - {agents_config['twitter_thread_planner']['goal']}",
         instructions=[
             f"{agents_config['twitter_thread_planner']['backstory']}",
@@ -108,7 +108,7 @@ class ContentPlanningWorkflow(Workflow):
     # LinkedIn Post Planner: Converts blog content into a structured LinkedIn post, optimized for a professional
     # audience with relevant hashtags.
     linkedin_post_planner: Agent = Agent(
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=f"{agents_config['linkedin_post_planner']['role']} - {agents_config['linkedin_post_planner']['goal']}",
         instructions=[
             f"{agents_config['linkedin_post_planner']['backstory']}",

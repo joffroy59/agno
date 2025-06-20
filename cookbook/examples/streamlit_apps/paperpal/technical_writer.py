@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import List
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.arxiv import ArxivTools
 from agno.tools.exa import ExaTools
 from dotenv import load_dotenv
@@ -60,7 +60,7 @@ exa_tools = ExaTools()
 
 # Initialize agents
 search_term_generator = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="""
 You are an expert research strategist. Generate 2 specific and distinct search terms that will capture different key aspects of the given topic.
 Focus on terms that are:
@@ -75,7 +75,7 @@ Provide the search terms as a list of strings like ["xyz", "abc", ...]
 )
 
 arxiv_search_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="""
 You are an expert in academic research with access to ArXiv's database.
 
@@ -102,7 +102,7 @@ Ensure the selected research papers directly address the topic and offer valuabl
 )
 
 exa_search_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="""
 You are a web search expert specializing in extracting high-quality information.
 
@@ -125,7 +125,7 @@ Ensure the selected articles are credible, relevant, and provide significant ins
 )
 
 research_editor = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     description="""
 You are a senior research editor specializing in breaking complex topics and information into understandable, engaging, high-quality blogs.
 

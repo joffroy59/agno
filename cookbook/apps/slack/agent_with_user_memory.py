@@ -33,7 +33,7 @@ memory.clear()
 
 personal_agent = Agent(
     name="Basic Agent",
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     tools=[GoogleSearchTools()],
     add_history_to_messages=True,
     num_history_responses=3,

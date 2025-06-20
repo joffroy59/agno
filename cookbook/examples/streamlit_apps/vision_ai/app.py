@@ -7,7 +7,7 @@ from agents import chat_followup_agent, image_processing_agent
 from agno.media import Image
 from agno.models.google import Gemini
 from agno.models.mistral.mistral import MistralChat
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.utils.log import logger
 from dotenv import load_dotenv
 from prompt import extraction_prompt

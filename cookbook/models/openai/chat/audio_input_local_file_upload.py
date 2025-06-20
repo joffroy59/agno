@@ -2,7 +2,7 @@ from pathlib import Path
 
 from agno.agent import Agent
 from agno.media import Audio
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 # Provide the agent with the audio file and get result as text
 agent = Agent(

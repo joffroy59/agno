@@ -3,7 +3,7 @@ import os
 from uuid import uuid4
 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.yfinance import YFinanceTools
@@ -37,7 +37,7 @@ market_data_agent = Agent(
     name="Market Data Agent",
     role="Fetch and analyze stock market data",
     agent_id="market-data",
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(stock_price=True, company_info=True, analyst_recommendations=True)
     ],
@@ -53,7 +53,7 @@ news_agent = Agent(
     name="News Research Agent",
     role="Research company news",
     agent_id="news-research",
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools()],
     instructions=[
         "You are a financial news analyst.",
@@ -68,7 +68,7 @@ financial_team = Team(
     mode="coordinate",
     team_id=str(uuid4()),
     user_id=str(uuid4()),
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     members=[
         market_data_agent,
         news_agent,

@@ -7,7 +7,7 @@
 from agno.agent import Agent
 from agno.embedder.cohere import CohereEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.reranker.cohere import CohereReranker
 from agno.tools.reasoning import ReasoningTools
 from agno.vectordb.lancedb import LanceDb, SearchType
@@ -26,7 +26,7 @@ knowledge_base = UrlKnowledge(
 )
 
 agent = Agent(
-    model=Claude(id="claude-sonnet-4-20250514"),
+    model=Ollama(id="mistral:latest"),
     # Agentic RAG is enabled by default when `knowledge` is provided to the Agent.
     knowledge=knowledge_base,
     # search_knowledge=True gives the Agent the ability to search on demand

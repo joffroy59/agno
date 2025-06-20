@@ -3,7 +3,7 @@ from textwrap import dedent
 
 import httpx
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 
 
 def get_upcoming_spacex_launches(num_launches: int = 5) -> str:
@@ -15,7 +15,7 @@ def get_upcoming_spacex_launches(num_launches: int = 5) -> str:
 
 # Create an Agent that has access to real-time SpaceX data
 agent = Agent(
-    model=OpenAIChat(id="gpt-4.1"),
+    model=Ollama(id="mistral:latest"),
     # Each function in the context is evaluated at runtime
     context={"upcoming_spacex_launches": get_upcoming_spacex_launches},
     description=dedent("""\

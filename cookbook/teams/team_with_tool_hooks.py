@@ -5,7 +5,7 @@ from uuid import uuid4
 from agno.agent.agent import Agent
 from agno.models.anthropic.claude import Claude
 from agno.models.mistral.mistral import MistralChat
-from agno.models.openai.chat import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.team import Team
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.tools.reddit import RedditTools
@@ -43,7 +43,7 @@ website_agent = Agent(
     name="Website Agent",
     agent_id="website-agent",
     role="Search the website for information",
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[DuckDuckGoTools(cache_results=True)],
     instructions=[
         "Search the website for information",
@@ -57,7 +57,7 @@ company_info_team = Team(
     name="Company Info Team",
     mode="coordinate",
     user_id=user_id,
-    model=Claude(id="claude-3-7-sonnet-latest"),
+    model=Ollama(id="mistral:latest"),
     members=[
         reddit_agent,
         website_agent,

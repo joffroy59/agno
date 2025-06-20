@@ -19,9 +19,9 @@ from typing import List, Optional
 import inquirer
 import typer
 from agno.agent import Agent
-from agno.embedder.openai import OpenAIEmbedder
+from agno.embedder.ollama import OllamaEmbedder
 from agno.knowledge.url import UrlKnowledge
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.storage.agent.sqlite import SqliteAgentStorage
 from agno.vectordb.lancedb import LanceDb, SearchType
 from rich import print
@@ -37,7 +37,7 @@ def initialize_knowledge_base():
             uri="tmp/lancedb",
             table_name="deep_knowledge_knowledge",
             search_type=SearchType.hybrid,
-            embedder=OpenAIEmbedder(id="text-embedding-3-small"),
+            embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
         ),
     )
     # Load the knowledge base (comment out after first run)
@@ -59,7 +59,7 @@ def create_agent(session_id: Optional[str] = None) -> Agent:
     return Agent(
         name="DeepKnowledge",
         session_id=session_id,
-        model=OpenAIChat(id="gpt-4o"),
+        model=Ollama(id="mistral:latest"),
         description=dedent("""\
         You are DeepKnowledge, an advanced reasoning agent designed to provide thorough,
         well-researched answers to any query by searching your knowledge base.

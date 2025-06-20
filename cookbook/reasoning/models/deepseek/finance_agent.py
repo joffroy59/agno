@@ -1,10 +1,10 @@
 from agno.agent import Agent
 from agno.models.deepseek import DeepSeek
-from agno.models.openai import OpenAIChat
+from agno.models.ollama import Ollama
 from agno.tools.yfinance import YFinanceTools
 
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         YFinanceTools(
             stock_price=True,

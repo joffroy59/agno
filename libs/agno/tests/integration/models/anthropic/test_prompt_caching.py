@@ -13,7 +13,7 @@ from unittest.mock import Mock
 import pytest
 
 from agno.agent import Agent, RunResponse
-from agno.models.anthropic import Claude
+from agno.models.ollama import Ollama
 from agno.utils.media import download_file
 
 
