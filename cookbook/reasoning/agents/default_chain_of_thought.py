@@ -21,7 +21,7 @@ reasoning_agent.print_response(
 
 # It uses the default model of the Agent
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o", max_tokens=1200),
+    model=Ollama(id="mistral:latest", max_tokens=1200),
     reasoning=True,
     markdown=True,
 )
