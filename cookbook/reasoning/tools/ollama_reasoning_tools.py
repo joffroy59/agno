@@ -4,7 +4,7 @@ from agno.tools.reasoning import ReasoningTools
 from agno.tools.yfinance import YFinanceTools
 
 reasoning_agent = Agent(
-    model=Ollama(id="llama3.2:latest"),
+    model=Ollama(id="mistral:latest"),
     tools=[
         ReasoningTools(
             think=True,

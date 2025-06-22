@@ -35,6 +35,7 @@ finance_agent = Agent(
 
 team_leader = Team(
     name="Reasoning Finance Team Leader",
+    model=Ollama(id="mistral:latest"),
     mode="coordinate",
     members=[
         web_agent,

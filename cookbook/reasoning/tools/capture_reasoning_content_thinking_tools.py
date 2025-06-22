@@ -17,6 +17,7 @@ print("\n=== Example 1: Using ThinkingTools in non-streaming mode ===\n")
 agent = Agent(
     model=Ollama(id="mistral:latest"),
     tools=[ThinkingTools(add_instructions=True)],
+    reasoning_model=Ollama(id="deepseek-r1:14b"),
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
         Use the think tool to organize your thoughts and approach problems step-by-step.
@@ -50,6 +51,7 @@ print("\n\n=== Example 2: Using ThinkingTools in streaming mode ===\n")
 streaming_agent = Agent(
     model=Ollama(id="mistral:latest"),
     tools=[ThinkingTools(add_instructions=True)],
+    reasoning_model=Ollama(id="deepseek-r1:14b"),
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
         Use the think tool to organize your thoughts and approach problems step-by-step.
