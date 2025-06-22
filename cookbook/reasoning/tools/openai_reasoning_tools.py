@@ -1,15 +1,15 @@
 from agno.agent import Agent
-from agno.models.ollama import Ollama
+from agno.models.openai import OpenAIChat
 from agno.tools.reasoning import ReasoningTools
 from agno.tools.yfinance import YFinanceTools
 
 reasoning_agent = Agent(
-    model=Ollama(id="mistral:latest"),
+    model=OpenAIChat(id="gpt-4o"),
     tools=[
         ReasoningTools(
             think=True,
             analyze=True,
-            add_instructions=True,
+            add_instructions=True,s
             add_few_shot=True,
         ),
         YFinanceTools(
