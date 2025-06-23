@@ -32,7 +32,7 @@ knowledge_tools = KnowledgeTools(
 )
 
 agent = Agent(
-    model=Ollama(id="mistral:latest"),
+    model=Ollama(id="mistral:latest", options={"num_ctx": 768}),
     tools=[knowledge_tools],
     show_tool_calls=True,
     markdown=True,
