@@ -17,6 +17,8 @@ memory = Memory(
 
 agent = Agent(
     model=Ollama(id="mistral"),
+    reasoning_model=Ollama(id="deepseek-r1:14b"),
+
     tools=[
         ReasoningTools(add_instructions=True),
         YFinanceTools(
