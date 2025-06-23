@@ -17,7 +17,7 @@ memory = Memory(
 
 agent = Agent(
     model=Ollama(id="mistral"),
-    reasoning_model=Ollama(id="deepseek-r1:14b"),
+    reasoning_model=Ollama(id="deepseek-r1:8b"),
 
     tools=[
         ReasoningTools(add_instructions=True),
