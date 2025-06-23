@@ -14,7 +14,7 @@ knowledge = UrlKnowledge(
         table_name="agno_docs",
         search_type=SearchType.hybrid,
         # Use OpenAI for embeddings
-        embedder=OpenAIEmbedder(id="text-embedding-3-small", dimensions=1536),
+        embedder = OllamaEmbedder(id="nomic-embed-text:latest", dimensions=768)
     ),
 )
 
