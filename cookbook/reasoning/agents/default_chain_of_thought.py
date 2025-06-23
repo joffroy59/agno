@@ -9,9 +9,7 @@ from agno.models.ollama import Ollama
 
 reasoning_agent = Agent(
     model=Ollama(id="mistral:latest"),
-    reasoning_model=OpenAIChat(
-        id="gpt-4o", max_tokens=1200
-    ),  # Should default to manual COT because it is not a native reasoning model
+    reasoning_model=Ollama(id="mistral:latest"),  # Should default to manual COT because it is not a native reasoning model
     markdown=True,
 )
 reasoning_agent.print_response(
@@ -23,7 +21,7 @@ reasoning_agent.print_response(
 
 # It uses the default model of the Agent
 reasoning_agent = Agent(
-    model=OpenAIChat(id="gpt-4o", max_tokens=1200),
+    model=Ollama(id="mistral:latest"),
     reasoning=True,
     markdown=True,
 )

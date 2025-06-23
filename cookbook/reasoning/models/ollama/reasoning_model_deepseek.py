@@ -2,8 +2,8 @@ from agno.agent import Agent
 from agno.models.ollama.chat import Ollama
 
 agent = Agent(
-    model=Ollama(id="llama3.2:latest"),
-    reasoning_model=Ollama(id="deepseek-r1:14b", max_tokens=4096),
+    model=Ollama(id="deepseek-r1:14b"),
+    reasoning_model=Ollama(id="deepseek-r1:14b"),
 )
 agent.print_response(
     "Solve the trolley problem. Evaluate multiple ethical frameworks. "

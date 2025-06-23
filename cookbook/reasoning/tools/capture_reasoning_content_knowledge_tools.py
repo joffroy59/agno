@@ -23,7 +23,7 @@ agno_docs = UrlKnowledge(
         uri="tmp/lancedb",
         table_name="cookbook_knowledge_tools",
         search_type=SearchType.hybrid,
-        embedder=OllamaEmbedder(id="nomic-embed-text:latest"),
+        embedder=OllamaEmbedder(id="mistral"),
     ),
 )
 
@@ -42,7 +42,7 @@ print("\n=== Example 1: Using KnowledgeTools in non-streaming mode ===\n")
 
 # Create agent with KnowledgeTools
 agent = Agent(
-    model=Ollama(id="mistral:latest"),
+    model=Ollama(id="mistral"),
     tools=[
         KnowledgeTools(
             knowledge=agno_docs,
@@ -85,7 +85,7 @@ print("\n\n=== Example 2: Using KnowledgeTools in streaming mode ===\n")
 
 # Create a fresh agent for streaming
 streaming_agent = Agent(
-    model=Ollama(id="mistral:latest"),
+    model=Ollama(id="mistral"),
     tools=[
         KnowledgeTools(
             knowledge=agno_docs,

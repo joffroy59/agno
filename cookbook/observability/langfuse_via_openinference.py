@@ -24,7 +24,7 @@ LANGFUSE_AUTH = base64.b64encode(
     f"{os.getenv('LANGFUSE_PUBLIC_KEY')}:{os.getenv('LANGFUSE_SECRET_KEY')}".encode()
 ).decode()
 os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"] = (
-    "https://us.cloud.langfuse.com/api/public/otel"  # 🇺🇸 US data region
+    "https://cloud.langfuse.com/api/public/otel"  # 🇺🇸 US data region
 )
 # os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"]="https://cloud.langfuse.com/api/public/otel" # 🇪🇺 EU data region
 # os.environ["OTEL_EXPORTER_OTLP_ENDPOINT"]="http://localhost:3000/api/public/otel" # 🏠 Local deployment (>= v3.22.0)

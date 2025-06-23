@@ -10,6 +10,8 @@ from agno.tools.knowledge import KnowledgeTools
 from agno.tools.reasoning import ReasoningTools
 from agno.tools.yfinance import YFinanceTools
 from agno.vectordb.lancedb import LanceDb, SearchType
+from agno.embedder.ollama import OllamaEmbedder
+
 
 agno_docs = UrlKnowledge(
     urls=["https://www.paulgraham.com/read.html"],
@@ -18,6 +20,8 @@ agno_docs = UrlKnowledge(
         uri="tmp/lancedb",
         table_name="agno_docs",
         search_type=SearchType.hybrid,
+        embedder = OllamaEmbedder(id="nomic-embed-text:latest", dimensions=4096)
+
     ),
 )
 

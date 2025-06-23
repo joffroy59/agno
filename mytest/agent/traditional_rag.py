@@ -17,7 +17,7 @@ knowledge_base = PDFUrlKnowledgeBase(
 knowledge_base.load(upsert=True)
 
 agent = Agent(
-    model=Ollama(id="mistral:latest"),
+    model=Ollama(id="openhermes"),
     knowledge=knowledge_base,
     # Enable RAG by adding references from AgentKnowledge to the user prompt.
     add_references=True,

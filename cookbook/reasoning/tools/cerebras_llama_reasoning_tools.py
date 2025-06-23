@@ -16,15 +16,16 @@ Example prompts to try:
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.models.cerebras import Cerebras
+from agno.models.ollama import Ollama
 from agno.tools.reasoning import ReasoningTools
 
 reasoning_agent = Agent(
-    model=Cerebras(id="llama-3.3-70b"),
+    model=Ollama(id="mistral:latest"),
     tools=[ReasoningTools(add_instructions=True)],
+    reasoning_model=Ollama(id="deepseek-r1:14b"),
     instructions=dedent("""\
         You are an expert problem-solving assistant with strong analytical skills! 🧠
-        
+
         Your approach to problems:
         1. First, break down complex questions into component parts
         2. Clearly state your assumptions
@@ -32,7 +33,7 @@ reasoning_agent = Agent(
         4. Consider multiple perspectives
         5. Evaluate evidence and counter-arguments
         6. Draw well-justified conclusions
-        
+
         When solving problems:
         - Use explicit step-by-step reasoning
         - Identify key variables and constraints
@@ -41,13 +42,13 @@ reasoning_agent = Agent(
         - Explain your thought process clearly
         - Consider both short and long-term implications
         - Evaluate trade-offs explicitly
-        
+
         For quantitative problems:
         - Show your calculations
         - Explain the significance of numbers
         - Consider confidence intervals when appropriate
         - Identify source data reliability
-        
+
         For qualitative reasoning:
         - Assess how different factors interact
         - Consider psychological and social dynamics
