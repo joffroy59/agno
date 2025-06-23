@@ -8,7 +8,7 @@ from agno.tools.yfinance import YFinanceTools
 web_agent = Agent(
     name="Web Search Agent",
     role="Handle web search requests and general research",
-    model=Ollama(id="llama3.1:8b"),
+    model=Ollama(id="mistral"),
     tools=[DuckDuckGoTools()],
     instructions="Always include sources",
     add_datetime_to_instructions=True,
@@ -17,7 +17,7 @@ web_agent = Agent(
 finance_agent = Agent(
     name="Finance Agent",
     role="Handle financial data requests and market analysis",
-    model=Ollama(id="llama3.1:8b"),
+    model=Ollama(id="mistral"),
     tools=[
         YFinanceTools(
             stock_price=True,
@@ -37,7 +37,7 @@ finance_agent = Agent(
 reasoning_finance_team = Team(
     name="Reasoning Finance Team",
     mode="coordinate",
-    model=Ollama(id="llama3.1:8b"),
+    model=Ollama(id="mistral"),
     members=[web_agent, finance_agent],
     tools=[ReasoningTools(add_instructions=True)],
     instructions=[
